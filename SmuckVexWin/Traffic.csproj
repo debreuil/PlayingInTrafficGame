@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\Sfx.cs" />
+    <Compile Include="Components\PlayerIndicatorLights.cs" />
     <Compile Include="Components\DeadIcon.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -263,6 +264,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\screens.fla" />
+    <None Include="Library\titleScreen.fla" />
+    <None Include="Library\vehicles.fla" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SWF2XNA\Box2D.XNA\Box2D.XNA - windows.csproj">

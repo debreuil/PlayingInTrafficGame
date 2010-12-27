@@ -22,6 +22,7 @@ using V2DRuntime.Shaders;
 using V2DRuntime.Display;
 using Microsoft.Xna.Framework.Audio;
 using Smuck.Audio;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace Smuck.Screens
 {
@@ -154,7 +155,7 @@ namespace Smuck.Screens
             foreach (NetworkGamer g in NetworkManager.Session.AllGamers)//SmuckGame.instance.gamers)
             {
                 int gamerIndex = NetworkManager.Instance.GetGamerIndex(g);
-                CreatePlayer(g, gamerIndex);
+                CreatePlayer(gamerIndex);
             }
 //            AudioManager.PlaySound(AudioManager.backgroundMusic);
 //            AudioManager.PlaySound(AudioManager.trafficRumble);
@@ -222,7 +223,7 @@ namespace Smuck.Screens
                     if (pl == null || (pl != null && pl.LivingState == LivingState.Dead) )
                     {
                         InputManager im = inputManagers[playerIndex];
-                        CreatePlayer(im.NetworkGamer, playerIndex);
+                        CreatePlayer(playerIndex);
                     }
                 }
                 else if (move == Move.ButtonY && !isLevelOver && pl.LivingState == LivingState.Alive)
@@ -323,8 +324,19 @@ namespace Smuck.Screens
             CheckRoundOver();
         }
 
-        protected virtual SmuckPlayer CreatePlayer(NetworkGamer g, int gamerIndex)
+        protected virtual SmuckPlayer CreatePlayer(int gamerIndex)
         {
+            NetworkGamer g = null;
+            GamerCollection<LocalNetworkGamer> lngc = NetworkManager.Session.LocalGamers;
+            for (int i = 0; i < lngc.Count; i++)
+            {
+                if (lngc[i].SignedInGamer != null && (int)lngc[i].SignedInGamer.PlayerIndex == gamerIndex)
+                {
+                    g = lngc[i];
+                    break;
+                }
+            }
+
             SmuckPlayer result = players.Find(p => (int)p.gamePadIndex == gamerIndex);
 
             if (result != null)

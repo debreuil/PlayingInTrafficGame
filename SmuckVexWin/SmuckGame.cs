@@ -22,6 +22,7 @@ namespace Smuck
     {
         public static List<HighScoreElement> highScores;
         public static List<Level> Levels;
+        public static bool[] ReadyPlayers = new bool[] { false, false, false, false };
 
 		public SmuckGame():base()
 		{

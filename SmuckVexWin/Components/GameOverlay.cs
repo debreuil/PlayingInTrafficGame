@@ -119,7 +119,10 @@ namespace Smuck.Components
         protected void pausedPanel_Unpause(object sender, EventArgs e)
         {
             pausedPanel.Deactivate();
-            ((BaseScreen)screen).ResumeAllVehicleSounds();
+            if (screen is BaseScreen)
+            {
+                ((BaseScreen)screen).ResumeAllVehicleSounds();
+            }
             stage.audio.ResumeSound(Sfx.backgroundMusic);
             hasActivePanel = false;
         }

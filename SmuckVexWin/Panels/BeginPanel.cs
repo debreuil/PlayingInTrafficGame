@@ -13,15 +13,16 @@ using DDW.Input;
 using Smuck.Screens;
 using Smuck.Enums;
 using V2DRuntime.Network;
+using Smuck.Components;
 
 namespace Smuck.Panels
 {
 	public class BeginPanel : Panel
 	{
 		private bool needsUpdate = true;
+        public PlayerIndicatorLights playerIndicatorLights;
 		public TextBox[] txName;
 		public TextBox[] txState;
-		public bool[] states = new bool[]{false, false, false, false};
 
 		public BeginPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
@@ -45,9 +46,9 @@ namespace Smuck.Panels
 		public bool PlayersDetected()
 		{
 			bool result = false;
-			for (int i = 0; i < states.Length; i++)
+			for (int i = 0; i < SmuckGame.ReadyPlayers.Length; i++)
 			{
-				if (states[i])
+                if (SmuckGame.ReadyPlayers[i])
 				{
 					result = true;
 					break;
@@ -78,7 +79,7 @@ namespace Smuck.Panels
 						name = SignedInGamer.SignedInGamers[i].Gamertag;
 					}
 					txName[i].Text = name;
-					txState[i].Text = states[i] ? "Ready" : "Press 'A' to Begin";
+                    txState[i].Text = SmuckGame.ReadyPlayers[i] ? "Ready" : "Press 'A' to Begin";
 				}
 				else
 				{
@@ -90,10 +91,13 @@ namespace Smuck.Panels
 		public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
 		{			
 			bool result = base.OnPlayerInput(playerIndex, move, time);
+
+            playerIndicatorLights.piLight[playerIndex].GotoAndStop(1);
+
 			if (result && isActive)
 			{
 				if (move == Move.ButtonA)
-				{
+                {
                     if (SignedInGamer.SignedInGamers.Count == 0)
                     {
                         ShowSignIn();
@@ -101,9 +105,9 @@ namespace Smuck.Panels
                     else
                     {
                         result = false;
-                        if (!states[playerIndex])
+                        if (!SmuckGame.ReadyPlayers[playerIndex])
                         {
-                            states[playerIndex] = true;
+                            SmuckGame.ReadyPlayers[playerIndex] = true;
                             needsUpdate = true;
                         }
                         else
@@ -115,9 +119,9 @@ namespace Smuck.Panels
 				else if (move == Move.ButtonB || ((int)move.Releases & (int)Microsoft.Xna.Framework.Input.Buttons.B) > 0)
 				{
 					result = false;
-					if(states[playerIndex])
+                    if (SmuckGame.ReadyPlayers[playerIndex])
 					{
-						states[playerIndex] = false;
+                        SmuckGame.ReadyPlayers[playerIndex] = false;
                         needsUpdate = true;
 					}
 				}
@@ -140,13 +144,13 @@ namespace Smuck.Panels
 		}
 		void SignedInGamer_SignedIn(object sender, SignedInEventArgs e)
 		{
-			states[(int)e.Gamer.PlayerIndex] = true;
 			needsUpdate = true;
+            playerIndicatorLights.piLight[(int)e.Gamer.PlayerIndex].GotoAndStop(1);
 		}
 		void SignedInGamer_SignedOut(object sender, SignedOutEventArgs e)
 		{
-			states[(int)e.Gamer.PlayerIndex] = false;
-			needsUpdate = true;
+            needsUpdate = true;
+            playerIndicatorLights.piLight[(int)e.Gamer.PlayerIndex].GotoAndStop(0);
 		}
 		public override void Update(GameTime gameTime)
 		{

@@ -62,7 +62,7 @@ namespace Smuck.Screens
                 steviePlayed = true;
             }
         }
-        protected override Smuck.Components.SmuckPlayer CreatePlayer(Microsoft.Xna.Framework.Net.NetworkGamer g, int gamerIndex)
+        protected override Smuck.Components.SmuckPlayer CreatePlayer(int gamerIndex)
         {
             if (popupStevie.CurFrame == 0)
             {
@@ -70,7 +70,7 @@ namespace Smuck.Screens
                 steviePlayed = false;
                 stage.audio.PlaySound("stevie_dodge");
             }
-            return base.CreatePlayer(g, gamerIndex);
+            return base.CreatePlayer(gamerIndex);
         }
     }
 }

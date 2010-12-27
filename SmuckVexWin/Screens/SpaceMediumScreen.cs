@@ -56,9 +56,9 @@ namespace Smuck.Screens
             lanes[5].vehicleSpeed = 30;
         }
 
-        protected override SmuckPlayer CreatePlayer(Microsoft.Xna.Framework.Net.NetworkGamer g, int gamerIndex)
+        protected override SmuckPlayer CreatePlayer(int gamerIndex)
         {
-            SmuckPlayer p = base.CreatePlayer(g, gamerIndex);
+            SmuckPlayer p = base.CreatePlayer(gamerIndex);
             p.dampingRatio = .99f;
             p.autoCenterOnLane = false;
             p.impulseScale = 10f;

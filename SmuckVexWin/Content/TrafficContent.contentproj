@@ -54,10 +54,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="VexPipeline">
-      <HintPath>..\..\..\SWF2XNA\VexPipeline\bin\x86\Release\VexPipeline.dll</HintPath>
+      <HintPath>..\..\..\SWF2XNA\VexPipeline\bin\x86\Debug\VexPipeline.dll</HintPath>
     </Reference>
     <Reference Include="VexPipelineReader">
-      <HintPath>..\..\..\SWF2XNA\VexPipeline\bin\x86\Release\VexPipelineReader.dll</HintPath>
+      <HintPath>..\..\..\SWF2XNA\VexPipeline\bin\x86\Debug\VexPipelineReader.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
