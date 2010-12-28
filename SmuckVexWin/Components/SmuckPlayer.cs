@@ -100,26 +100,12 @@ namespace Smuck.Components
 			get { return speedLevel; }
 			set { speedLevel = value; maxSpeed = speeds[(int)speedLevel]; }
         }
-        private bool isNaked = false;
-        public bool IsNaked
-		{
-            get { return isNaked; }
-            set 
-            {
-                if (isNaked != value)
-                {
-                    isNaked = value;
-                    SetView();
-                }
-            }
-		}
 		public void Reset(float x, float y, float rot)
 		{
 			this.roundScore = 0;
             this.lane = null;
             this.playerSkin = PlayerSkin.None;
             this.isExploding = false;
-            this.IsNaked = false;
             this.skipDeathMarker = false;
             this.autoCenterOnLane = true;
             this.dampingRatio = .7f;
@@ -191,14 +177,7 @@ namespace Smuck.Components
                         PlayerSkin = PlayerSkin.TrainTrack;
                         break;
                     default :
-                        if (isNaked)
-                        {
-                            PlayerSkin = PlayerSkin.Naked;
-                        }
-                        else
-                        {
-                            PlayerSkin = PlayerSkin.Normal;
-                        }
+                        PlayerSkin = PlayerSkin.Normal;
                         break;
                 }
             }
@@ -251,13 +230,10 @@ namespace Smuck.Components
                             ReplaceView("traintrackPlayer");
                             break;
                         case PlayerSkin.Swimming:
-                            ReplaceView("swimPlayer0");
-                            break;
-                        case PlayerSkin.Naked:
-                            ReplaceView("nakedPlayer");
+                            ReplaceView("swimPlayer" + (int)gamePadIndex);
                             break;
                         case PlayerSkin.Tumbling:
-                            ReplaceView("deadPlayer0");
+                            ReplaceView("deadPlayer" + (int)gamePadIndex);
                             break;
                         case PlayerSkin.Spacesuit:
                             ReplaceView("spaceman" + (int)gamePadIndex);

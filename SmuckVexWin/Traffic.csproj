@@ -110,9 +110,6 @@
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
-    <Reference Include="VexPipeline">
-      <HintPath>..\..\SWF2XNA\VexPipeline\bin\x86\Release\VexPipeline.dll</HintPath>
-    </Reference>
     <Reference Include="VexPipelineReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SWF2XNA\VexPipeline\bin\x86\Release\VexPipelineReader.dll</HintPath>

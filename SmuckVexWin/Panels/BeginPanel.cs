@@ -98,11 +98,15 @@ namespace Smuck.Panels
 			{
 				if (move == Move.ButtonA)
                 {
-                    if (SignedInGamer.SignedInGamers.Count == 0)
+                    bool needsSignIn = false;
+#if XBOX
+                    needsSignIn = playerIndex <= SignedInGamer.SignedInGamers.Count || SignedInGamer.SignedInGamers[playerIndex] == null;
+                    if (needsSignIn)
                     {
                         ShowSignIn();
                     }
-                    else
+#endif
+                    if (!needsSignIn)
                     {
                         result = false;
                         if (!SmuckGame.ReadyPlayers[playerIndex])

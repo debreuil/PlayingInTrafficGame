@@ -12,7 +12,8 @@ Box2D/*
 **/bin/*
 **/obj/*
 **/**/obj/*
-**/Content/exports/*
-**/Content/obj/*
-**/Content/bin/*
+**/Content/**/*
+!**/Content/audio/*
+# SmuckVexWin/Content/Resources_screens/*
+# SmuckVexWin/Content/Resources_titleScreen/*
 **/Thumbs.db

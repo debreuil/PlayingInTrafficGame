@@ -52,7 +52,7 @@ namespace Smuck.Screens
         public List<DeadIcon> deadIcons = new List<DeadIcon>();
 
         [V2DSpriteAttribute(depthGroup = 20, isBullet = true, linearDamping = 2, categoryBits = Category.PLAYER, maskBits = Category.DEFAULT | Category.BORDER | Category.VEHICLE | Category.PLAYER | Category.WATER | Category.GUIDERAIL)]
-        public static List<SmuckPlayer> players = new List<SmuckPlayer>();
+        public static List<SmuckPlayer> players = new List<SmuckPlayer>(new SmuckPlayer[]{null,null,null,null});
         
         [SpriteAttribute(depthGroup = 0)]
         protected V2DSprite road;
@@ -151,12 +151,18 @@ namespace Smuck.Screens
         public override void AddedToStage(EventArgs e)
         {
             base.AddedToStage(e);
-
-            foreach (NetworkGamer g in NetworkManager.Session.AllGamers)//SmuckGame.instance.gamers)
+            for (int i = 0; i < SmuckGame.ReadyPlayers.Length; i++)
             {
-                int gamerIndex = NetworkManager.Instance.GetGamerIndex(g);
-                CreatePlayer(gamerIndex);
+                if(SmuckGame.ReadyPlayers[i])
+                {
+                    CreatePlayer(i);
+                }
             }
+            //foreach (NetworkGamer g in NetworkManager.Session.AllGamers)//SmuckGame.instance.gamers)
+            //{
+            //    int gamerIndex = NetworkManager.Instance.GetGamerIndex(g);
+            //    CreatePlayer(gamerIndex);
+            //}
 //            AudioManager.PlaySound(AudioManager.backgroundMusic);
 //            AudioManager.PlaySound(AudioManager.trafficRumble);
 
@@ -170,8 +176,11 @@ namespace Smuck.Screens
 
             foreach (SmuckPlayer p in players)
             {
-                this.RemoveChild(p);
-                p.body = null;
+                if (p != null)
+                {
+                    this.RemoveChild(p);
+                    p.body = null;
+                }
             }
             for (int i = 0; i < lanes.Length; i++)
             {
@@ -210,9 +219,9 @@ namespace Smuck.Screens
         {
             bool result = base.OnPlayerInput(playerIndex, move, time);
 
-            if (result)
+            if (result && players[playerIndex] != null)
             {
-                SmuckPlayer pl = players.Find(p => p.gamePadIndex == (PlayerIndex)playerIndex);
+                SmuckPlayer pl = players[playerIndex];
                 if (move == Move.Start)
                 {
                     PauseAllVehicleSounds();
@@ -284,7 +293,7 @@ namespace Smuck.Screens
             bool result = false;
             foreach (SmuckPlayer p in players)
             {
-                if (p.LivingState != LivingState.Alive && p.roundScore >= pointsToWinRound)
+                if (p != null && p.LivingState != LivingState.Alive && p.roundScore >= pointsToWinRound)
                 {
                     isLevelOver = true;
                     result = true;
@@ -337,7 +346,7 @@ namespace Smuck.Screens
                 }
             }
 
-            SmuckPlayer result = players.Find(p => (int)p.gamePadIndex == gamerIndex);
+            SmuckPlayer result = players[gamerIndex];
 
             if (result != null)
             {
@@ -366,11 +375,11 @@ namespace Smuck.Screens
                     startLocations[gamerIndex, 2],
                     playerDepthCount++);
 
-                result.isLocal = g.IsLocal;
-                result.NetworkGamer = g;
-                result.NetworkId = g.Id;
+                //result.isLocal = g.IsLocal;
+                //result.NetworkGamer = g;
+                //result.NetworkId = g.Id;
                 result.Depth = playerDepthCount;
-
+                result.gamePadIndex = (PlayerIndex)gamerIndex;
                 if (g is LocalNetworkGamer)
                 {
                     result.gamePadIndex = ((LocalNetworkGamer)g).SignedInGamer.PlayerIndex;
@@ -388,10 +397,10 @@ namespace Smuck.Screens
                         }
                         GamePadCapabilities gpt = GamePad.GetCapabilities(result.gamePadIndex);
                     }
+                    g.Tag = result;
                 }
 
 
-                g.Tag = result;
 
                 // compact framework doesn't support Array.Find
                 // InputManager im = Array.Find(inputManagers, m => (m != null) && (m.NetworkGamer == g));
@@ -537,13 +546,6 @@ namespace Smuck.Screens
                             stage.audio.PlaySound(Sfx.bigSplash);
                         }
                     }
-                    else if (nonPlayerObj.InstanceName.StartsWith("tree"))
-                    {
-                        if (rnd.Next(20) == 1)
-                        {
-                            p.IsNaked = true;
-                        }
-                    }
                     else if (p.LivingState == LivingState.Dying && nonPlayerObj.InstanceName.StartsWith("border"))
                     {
                         // no death icon when flying off left or right side of highway
@@ -642,7 +644,10 @@ namespace Smuck.Screens
                 summaryPosted = true;
                 foreach (SmuckPlayer p in players)
                 {
-                    p.RoundComplete();
+                    if (p != null)
+                    {
+                        p.RoundComplete();
+                    }
                 }
                 StopAllVehicleSounds();
                 gameOverlay.EndRound();
@@ -702,42 +707,43 @@ namespace Smuck.Screens
                 for (int i = 0; i < players.Count; i++)
                 {
                     SmuckPlayer p = players[i];
-
-                    if (p.LivingState == LivingState.Alive)
+                    if (p != null)
                     {
-                        int curLane = GetLaneFromY((int)(p.Y + p.Height / 2));
-                        if (curLane != p.Lane.laneIndex)
+                        if (p.LivingState == LivingState.Alive)
                         {
-                            p.snapLaneY = lanes[curLane].yLocation + lanes[curLane].laneHeight / 2;
-                            gameOverlay.SetScore(p);                            
-                            p.Lane = lanes[curLane];
-
-                            // make it harder and harder after success level of points
-                            if (p.roundScore >= pointsToWinRound)
+                            int curLane = GetLaneFromY((int)(p.Y + p.Height / 2));
+                            if (curLane != p.Lane.laneIndex)
                             {
-                                if (endOnLastLane)
-                                {
-                                    isLevelOver = true;
-                                }
+                                p.snapLaneY = lanes[curLane].yLocation + lanes[curLane].laneHeight / 2;
+                                gameOverlay.SetScore(p);
+                                p.Lane = lanes[curLane];
 
-                                if (p.Lane.LaneKind != LaneKind.Sidewalk)
+                                // make it harder and harder after success level of points
+                                if (p.roundScore >= pointsToWinRound)
                                 {
-                                    p.Lane.minCreationDelay = (int)(p.Lane.minCreationDelay * .9);
-                                    p.Lane.maxCreationDelay = (int)(p.Lane.maxCreationDelay * .9);
-                                    p.Lane.vehicleSpeed += 3;
+                                    if (endOnLastLane)
+                                    {
+                                        isLevelOver = true;
+                                    }
+
+                                    if (p.Lane.LaneKind != LaneKind.Sidewalk)
+                                    {
+                                        p.Lane.minCreationDelay = (int)(p.Lane.minCreationDelay * .9);
+                                        p.Lane.maxCreationDelay = (int)(p.Lane.maxCreationDelay * .9);
+                                        p.Lane.vehicleSpeed += 3;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else if (p.IsOnStage && !p.skipDeathMarker && p.LivingState == LivingState.Dying)
-                    {
-                        float vel = p.body.GetLinearVelocity().LengthSquared();
-                        if (p.body.GetLinearVelocity().LengthSquared() < 100)
+                        else if (p.IsOnStage && !p.skipDeathMarker && p.LivingState == LivingState.Dying)
                         {
-                            p.DestroyAfterUpdate();
+                            float vel = p.body.GetLinearVelocity().LengthSquared();
+                            if (p.body.GetLinearVelocity().LengthSquared() < 100)
+                            {
+                                p.DestroyAfterUpdate();
+                            }
                         }
                     }
-
                 }
             }
             stage.audio.Update();
