@@ -27,7 +27,9 @@ namespace Smuck.Panels
             MenuState.Exit,
             MenuState.Lobby, 
         };
-        public MainMenuPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
+        public MainMenuPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) 
+        { 
+        }
 
         void menuButtons_OnClick(Button sender, int playerIndex, TimeSpan time)
         {

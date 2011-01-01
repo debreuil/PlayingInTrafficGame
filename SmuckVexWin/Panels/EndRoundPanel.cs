@@ -17,21 +17,47 @@ namespace Smuck.Panels
     {
         public List<ScoreBox> scoreBox;
 
+        public int delayTime;
+        public bool canAdvance;
+
         public EndRoundPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
 		public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
 		{			
 			bool result = base.OnPlayerInput(playerIndex, move, time);
-			if (result && isActive && Visible)
-			{
-				if (move == Move.ButtonA)//(move.Releases & Buttons.A) != 0) //
-				{
-                    Continue(this, null);
-                    result = false;
-				}
-			}
+            if (result && isActive && Visible)
+            {
+                if ((move.Releases & Buttons.A) != 0)
+                {
+                    if (delayTime > 2000)
+                    {
+                        Continue(this, null);
+                        result = false;
+                    }
+                    else
+                    {
+                        canAdvance = true;
+                    }
+                }
+            }
 			return result;
 		}
+        public override void Activate()
+        {
+            base.Activate();
+            delayTime = 0;
+            canAdvance = false;
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            delayTime += gameTime.ElapsedGameTime.Milliseconds; 
+
+            if (canAdvance && delayTime > 5000)
+            {
+                Continue(this, null);
+            }
+        }
         public override void Removed(EventArgs e)
         {
             base.Removed(e);

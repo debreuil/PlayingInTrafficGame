@@ -21,16 +21,22 @@ namespace Smuck.Components
     {
     //    [V2DSpriteAttribute(categoryBits = Category.BORDER, maskBits = Category.DEFAULT | Category.ICON | Category.PLAYER, isStatic = true, allowSleep = false)]
     //    protected V2DSprite[] border;
+
         [SpriteAttribute(depthGroup = 1000)]
         public PrescreenPanel prescreenPanel;
+
         [SpriteAttribute(depthGroup = 1000)]
         public PausedPanel pausedPanel;
+
         [SpriteAttribute(depthGroup = 1000)]
         public EndRoundPanel endRoundPanel;
+
         [SpriteAttribute(depthGroup = 100)]
         protected V2DSprite bushes;
+
         [SpriteAttribute(depthGroup = 100)]
-        protected V2DSprite[] panel;
+        protected V2DSprite[] borderPanels;
+
         [V2DShaderAttribute(shaderType = typeof(TextShader))]
         [V2DSpriteAttribute(depthGroup = 200)]
         public ScoreView scores; 
@@ -50,6 +56,13 @@ namespace Smuck.Components
         public override void Initialize()
         {
             base.Initialize();
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+
+            this.visible = true;
 
             for (int i = 0; i < scores.txScore.Count; i++)
             {
@@ -59,16 +72,28 @@ namespace Smuck.Components
             }
 
             prescreenPanel.Continue += new EventHandler(prescreenPanel_Continue);
+            pausedPanel.Unpause += new EventHandler(pausedPanel_Unpause);
+            endRoundPanel.Continue += new EventHandler(endRoundPanel_Continue);
+
+            pausedPanel.Deactivate();
+            endRoundPanel.Deactivate();
             prescreenPanel.Activate();
             hasActivePanel = true;
-
-            pausedPanel.Unpause += new EventHandler(pausedPanel_Unpause);
-            pausedPanel.Deactivate();
-
-            endRoundPanel.Continue += new EventHandler(endRoundPanel_Continue);
-            endRoundPanel.Deactivate();
         }
+        public override void Deactivate()
+        {
+            base.Deactivate();
 
+            this.visible = false;
+
+            prescreenPanel.Deactivate();
+            pausedPanel.Deactivate();
+            endRoundPanel.Deactivate();
+
+            prescreenPanel.Continue -= new EventHandler(prescreenPanel_Continue);
+            pausedPanel.Unpause -= new EventHandler(pausedPanel_Unpause);
+            endRoundPanel.Continue -= new EventHandler(endRoundPanel_Continue);
+        }
         void prescreenPanel_Continue(object sender, EventArgs e)
         {
 //            prescreenPanel.Continue -= new EventHandler(prescreenPanel_Continue);
@@ -76,11 +101,12 @@ namespace Smuck.Components
             hasActivePanel = false;
         }
 
-        public void SetLevel(Level levelEnum)
+        public void SetLevel(Level levelEnum, uint levelNumber)
         {
-            panel[0].GotoAndStop((uint)levelEnum);
-            panel[1].GotoAndStop((uint)levelEnum);
-            prescreenPanel.GotoAndStop((uint)levelEnum - 1);
+            borderPanels[0].GotoAndStop((uint)levelEnum);
+            borderPanels[1].GotoAndStop((uint)levelEnum);
+            prescreenPanel.SetLevel(levelEnum, levelNumber);
+            //prescreenPanel.GotoAndStop((uint)levelEnum - 1);
             prescreenPanel.Activate();
             hasActivePanel = true;
         }

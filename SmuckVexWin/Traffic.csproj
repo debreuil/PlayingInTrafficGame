@@ -202,6 +202,7 @@
     <Compile Include="Screens\WideBoulevardScreen.cs" />
     <Compile Include="Screens\StartScreen.cs" />
     <Compile Include="Screens\TwoTrainTwoRestScreen.cs" />
+    <Compile Include="Shaders\ParticleShader.cs" />
     <Compile Include="Shaders\TextShader.cs" />
     <Compile Include="Utils\SmuckContactListener.cs" />
     <Compile Include="Shaders\DesaturationShader.cs" />

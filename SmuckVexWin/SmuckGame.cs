@@ -22,7 +22,7 @@ namespace Smuck
     {
         public static List<HighScoreElement> highScores;
         public static List<Level> Levels;
-        public static bool[] ReadyPlayers = new bool[] { false, false, false, false };
+        // static bool[] ReadyPlayers = new bool[] { false, false, false, false };
 
 		public SmuckGame():base()
 		{
@@ -58,28 +58,39 @@ namespace Smuck
             titleScreen = new StartScreen(si);
             stage.AddScreen(titleScreen);
 
-            AddLevel("twoLaneScreen", typeof(TwoLaneScreen));
-            AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
-            AddLevel("twoBoulevardScreen", typeof(TwoBoulevardScreen));
+            levelNumber = 12;
+            //AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
+            //AddLevel("laneChangeScreen", typeof(LaneChangeScreen)); // must be 12th
             AddLevel("crosswalkScreen", typeof(CrosswalkScreen));
-            AddLevel("housesScreen", typeof(HousesScreen));
+
+            levelNumber = 0;
+            AddLevel("twoLaneScreen", typeof(TwoLaneScreen)); // must be first
+
+            AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
+            AddLevel("crosswalkScreen", typeof(CrosswalkScreen));
             AddLevel("twoTrainTwoRestScreen", typeof(TwoTrainTwoRestScreen));
-            AddLevel("twoTrainScreen", typeof(TwoTrainScreen));
-            AddLevel("allCarsScreen", typeof(AllCarsScreen));
             AddLevel("twoCanaltwoBoulScreen", typeof(TwoCanalTwoBoulevardScreen));
-            AddLevel("twoCanalScreen", typeof(TwoCanalScreen));
-            AddLevel("twoCanalTwoTrainScreen", typeof(TwoCanalTwoTrainScreen));
-            AddLevel("allTrainScreen", typeof(AllTrainScreen));
-            AddLevel("laneChangeScreen", typeof(LaneChangeScreen));
-            AddLevel("allWaterScreen", typeof(AllWaterScreen));
             AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
+
+            AddLevel("allCarsScreen", typeof(AllCarsScreen));
+            AddLevel("twoCanalScreen", typeof(TwoCanalScreen));
+            AddLevel("housesScreen", typeof(HousesScreen));
+            AddLevel("allWaterScreen", typeof(AllWaterScreen));
+            AddLevel("twoTrainScreen", typeof(TwoTrainScreen));
+
+            AddLevel("allTrainScreen", typeof(AllTrainScreen));
+            AddLevel("laneChangeScreen", typeof(LaneChangeScreen)); // must be 12th
+            AddLevel("twoCanalTwoTrainScreen", typeof(TwoCanalTwoTrainScreen));
+            AddLevel("twoBoulevardScreen", typeof(TwoBoulevardScreen));
             AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
         }
+        private uint levelNumber = 0;
         private void AddLevel(string levelName, Type levelType)
         {
             SymbolImport si = new SymbolImport("screens", levelName);
             ConstructorInfo ci = levelType.GetConstructor(new Type[]{si.GetType()});
             object o = ci.Invoke(new object[] { si });
+            ((BaseScreen)o).levelNumber = levelNumber++;
             stage.AddScreen((BaseScreen)o);
         }
         protected override void Initialize()
@@ -94,16 +105,14 @@ namespace Smuck
         public override void AddingScreen(Screen screen)
         {
             base.AddingScreen(screen);
-            GameOverlay.Visible = false;
+            GameOverlay.Deactivate();
         }
         public override void RemovingScreen(Screen screen)
         {
             base.RemovingScreen(screen);
             if (screen is BaseScreen && screen.Contains(gameOverlay))
             {
-                gameOverlay.Visible = false;
-                ((BaseScreen)screen).gameOverlay = null;
-                
+                GameOverlay.Deactivate();              
             }
         }
 

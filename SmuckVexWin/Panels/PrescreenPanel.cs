@@ -10,6 +10,7 @@ using DDW.Display;
 using V2DRuntime.Components;
 using Smuck.Components;
 using Microsoft.Xna.Framework.Input;
+using Smuck.Enums;
 
 namespace Smuck.Panels
 {
@@ -17,28 +18,56 @@ namespace Smuck.Panels
     {
         public List<ScoreBox> scoreBox;
 
+        public Sprite levelNums;
+        public int delayTime;
+        public bool canAdvance;
+        
         public PrescreenPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
 		public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
-		{			
-			bool result = base.OnPlayerInput(playerIndex, move, time);
-			if (result && isActive)
-			{
-				//if ((move.Releases & Buttons.A) != 0)
-				if (move == Move.ButtonA)
-				{
-                    if (Continue != null)
+        {
+            bool result = base.OnPlayerInput(playerIndex, move, time);
+            if (result && isActive && Visible)
+            {
+                if ((move.Releases & Buttons.A) != 0)
+                {
+                    if (delayTime > 2000)
                     {
                         Continue(this, null);
+                        result = false;
                     }
-                    result = false;
-				}
-			}
-			return result;
+                    else
+                    {
+                        canAdvance = true;
+                    }
+                }
+            }
+            return result;
 		}
-        public override void Removed(EventArgs e)
+        public override void Activate()
         {
-            base.Removed(e);
+            base.Activate();
+            delayTime = 0;
+            canAdvance = false;
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            delayTime += gameTime.ElapsedGameTime.Milliseconds;
+            if (canAdvance && delayTime > 5000)
+            {
+                Continue(this, null);
+            }
+        }
+        public void SetLevel(Level level, uint levelNumber)
+        {
+            InputManager.ClearAll();
+            levelNums.GotoAndStop(levelNumber);
+            this.GotoAndStop((uint)level - 1);
         }
 		public event EventHandler Continue;
     }

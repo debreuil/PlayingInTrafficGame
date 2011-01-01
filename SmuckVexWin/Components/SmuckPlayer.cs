@@ -18,6 +18,7 @@ using V2DRuntime.Display;
 using Smuck.Screens;
 using Microsoft.Xna.Framework.Audio;
 using Smuck.Audio;
+using Smuck.Shaders;
 
 namespace Smuck.Components
 {
@@ -118,7 +119,6 @@ namespace Smuck.Components
             goalIsTop = !(lastStepPos.Y < this.screen.ClientSize.Y / 2);
             this.SpeedLevel = SpeedLevel.Normal;
             aboardVehicle = null;
-            CreateFlameEffect();
             this.LivingState = LivingState.Alive;
 		}
         private Lane lane;
@@ -227,7 +227,7 @@ namespace Smuck.Components
                             ReplaceView("player" + (int)gamePadIndex);
                             break;
                         case PlayerSkin.TrainTrack:
-                            ReplaceView("traintrackPlayer");
+                            ReplaceView("traintrackPlayer" + (int)gamePadIndex);
                             break;
                         case PlayerSkin.Swimming:
                             ReplaceView("swimPlayer" + (int)gamePadIndex);
@@ -242,11 +242,11 @@ namespace Smuck.Components
                         case PlayerSkin.Drowning:
                             if (lane.LaneKind == LaneKind.SwimWater)
                             {
-                                ReplaceView("drowningFloatPlayer");
+                                ReplaceView("drowningFloatPlayer" + (int)gamePadIndex);
                             }
                             else
                             {
-                                ReplaceView("drowningPlayer");
+                                ReplaceView("drowningPlayer" + (int)gamePadIndex);
                             }
                             stage.audio.PlaySound(Sfx.drowning);
                             PlayAll();
@@ -445,7 +445,7 @@ namespace Smuck.Components
         {
             if (starParticles == null)// && LivingState == LivingState.Alive)
             {
-//                starParticles = (StarParticleGroup)parent.CreateInstance(null, "starParticles" + Index, 0, 0, 0);
+                starParticles = (StarParticleGroup)parent.CreateInstance(null, "starParticles" + Index, 0, 0, 0);
             }
         }
         public void CreateSteamEffect()
@@ -462,7 +462,6 @@ namespace Smuck.Components
             if (obj is StarParticleGroup)
             {
                 this.starParticles = null;
-                //((DesaturationShader)defaultShader).level = 1f;
             }
         }
 
@@ -483,26 +482,22 @@ namespace Smuck.Components
                     steamParticles = null;
                 }
             }
-
-            if (screen.isActive && starParticles != null)
+            else if (screen.isActive && starParticles != null)
             {
                 if (starParticles.isComplete)
                 {
                     starParticles = null;
-                }
+                } 
                 else
                 {
                     int msDelay = 15;
                     prevMs += gameTime.ElapsedGameTime.Milliseconds;
                     if (prevMs > msDelay)
                     {
-                        //if (defaultShader != null)
-                        //{
-                        //    ((DesaturationShader)defaultShader).level = (70f - starParticles.NumChildren) / 70f;
-                        //}
                         prevMs -= msDelay;
                         int pi = (int)Math.Min(roundScore / (laneCount - 1f), 7);
-                        starParticles.CreateInstanceAt("plpart" + pi, "pe", X + rnd.Next(40) - 20, Y + rnd.Next(40) - 20, 0, 0);
+                        //starParticles.CreateInstanceAt("plpart" + pi, "pe", X + rnd.Next(40) - 20, Y + rnd.Next(40) - 20, 0, 0);
+                        starParticles.CreateInstanceAt("plpart7", "pe", X + rnd.Next(40) - 20, Y + rnd.Next(40) - 20, 0, 0);
                         starParticles.SetParticleScale(pi / ((laneCount - 1f) * 3f) + .33f);
                     }
                 }

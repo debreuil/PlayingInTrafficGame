@@ -8,26 +8,26 @@ namespace Smuck.Enums
     public enum Level
     {
         Default = 0,
-        StartScreen = 1,
-        TwoLane = 2,
-        WideBoulevard = 3,
-        TwoBoulevard = 4,
-        Crosswalk = 5,
-        Houses = 6,
-        TwoTrainTwoBoulevard = 7,
-        TwoTrain = 8,
-        AllCars = 9,
-        TwoCanalTwoBoulevard = 10,
-        TwoCanal = 11,
-        TwoCanalTwoTrain = 12,
-        AllTrain = 13,
-        LaneChange = 14, // offended
-        AllWater = 15,
-        SpaceMedium = 16,
-        SteamRoller = 17,
-        Zombie = 18,
-        SpaceBoulevardSlow = 19,
-        ParkingLot = 20,
-        SpaceFast = 21,
+        TwoLane = 1, // must be 1
+        WideBoulevard = 2,
+        TwoBoulevard = 3,
+        Crosswalk = 4,
+        Houses = 5,
+        TwoTrainTwoBoulevard = 6,
+        TwoTrain = 7,
+        AllCars = 8,
+        TwoCanalTwoBoulevard = 9,
+        TwoCanal = 10,
+        TwoCanalTwoTrain = 11,
+        AllTrain = 12,
+        LaneChange = 13, // must be 13
+        AllWater = 14,
+        SpaceMedium = 15,
+        SteamRoller = 16,
+
+        Zombie = 17,
+        SpaceBoulevardSlow = 18,
+        ParkingLot = 19,
+        SpaceFast = 20,
     }
 }

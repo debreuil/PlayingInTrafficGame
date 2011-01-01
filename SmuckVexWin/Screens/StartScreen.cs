@@ -49,14 +49,17 @@ namespace Smuck.Screens
 		public override void Initialize()
 		{
 			base.Initialize();
-		}
+
+            panels = new Panel[] { beginPanel, mainMenuPanel, /*networkPanel, lobbyPanel,*/ optionsPanel, highScorePanel, instructionsPanel, exitPanel };
+ 		}
 		protected override void OnAddToStageComplete()
 		{
 			base.OnAddToStageComplete();
-            
+
+            SetPanel(MenuState.Empty);
+
 			if (firstTimeDisplayed)
 			{
-				panels = new Panel[] { beginPanel, mainMenuPanel, /*networkPanel, lobbyPanel,*/ optionsPanel, highScorePanel, instructionsPanel, exitPanel };
 				SetPanel(MenuState.Begin);
 				firstTimeDisplayed = false;
 			}
@@ -75,6 +78,7 @@ namespace Smuck.Screens
 		{
 			base.RemovedFromStage(e);
 			SetPanel(MenuState.Empty);
+            panels = null;
 			NetworkManager.Instance.OnGameStarted -= new NetworkManager.GameStartedDelegate(OnStartGame);
 		}
 

@@ -19,7 +19,15 @@ namespace Smuck.Components
         public override void Initialize()
         {
             base.Initialize();
-            piLight[0].GotoAndStop(1);
+            Reset();            
+        }
+        public void Reset()
+        {
+            for (int i = 0; i < piLight.Length; i++)
+            {
+                piLight[i].GotoAndStop(0);
+            }
+            
         }
     }
 }

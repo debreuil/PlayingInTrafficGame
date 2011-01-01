@@ -14,6 +14,7 @@ using Smuck.Screens;
 using Smuck.Enums;
 using V2DRuntime.Network;
 using Smuck.Components;
+using V2DRuntime.Enums;
 
 namespace Smuck.Panels
 {
@@ -43,19 +44,6 @@ namespace Smuck.Panels
 			SignedInGamer.SignedIn -= new EventHandler<SignedInEventArgs>(SignedInGamer_SignedIn);
 			SignedInGamer.SignedOut -= new EventHandler<SignedOutEventArgs>(SignedInGamer_SignedOut);
 		}
-		public bool PlayersDetected()
-		{
-			bool result = false;
-			for (int i = 0; i < SmuckGame.ReadyPlayers.Length; i++)
-			{
-                if (SmuckGame.ReadyPlayers[i])
-				{
-					result = true;
-					break;
-				}
-			}
-			return result;
-		}
 		public void ShowSignIn()
 		{
 			if (!Guide.IsVisible)
@@ -79,7 +67,17 @@ namespace Smuck.Panels
 						name = SignedInGamer.SignedInGamers[i].Gamertag;
 					}
 					txName[i].Text = name;
-                    txState[i].Text = SmuckGame.ReadyPlayers[i] ? "Ready" : "Press 'A' to Begin";
+                    string msg = "";
+                    switch (im.PlayerJoinState)
+                    {
+                        case PlayerJoinState.NotJoined:
+                            msg = "Press 'A' to Join";
+                            break;
+                        case PlayerJoinState.Joined:
+                            msg = "Press 'A' to Begin\nPress 'B' to Leave";
+                            break;
+                    }
+                    txState[i].Text = msg;
 				}
 				else
 				{
@@ -91,8 +89,6 @@ namespace Smuck.Panels
 		public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
 		{			
 			bool result = base.OnPlayerInput(playerIndex, move, time);
-
-            playerIndicatorLights.piLight[playerIndex].GotoAndStop(1);
 
 			if (result && isActive)
 			{
@@ -106,12 +102,15 @@ namespace Smuck.Panels
                         ShowSignIn();
                     }
 #endif
+                    InputManager im = screen.inputManagers[playerIndex];
+                    playerIndicatorLights.piLight[playerIndex].GotoAndStop(1);
+
                     if (!needsSignIn)
                     {
                         result = false;
-                        if (!SmuckGame.ReadyPlayers[playerIndex])
+                        if (im.PlayerJoinState == PlayerJoinState.NotJoined)
                         {
-                            SmuckGame.ReadyPlayers[playerIndex] = true;
+                            im.PlayerJoinState = PlayerJoinState.Joined;
                             needsUpdate = true;
                         }
                         else
@@ -122,10 +121,11 @@ namespace Smuck.Panels
 				}
 				else if (move == Move.ButtonB || ((int)move.Releases & (int)Microsoft.Xna.Framework.Input.Buttons.B) > 0)
 				{
-					result = false;
-                    if (SmuckGame.ReadyPlayers[playerIndex])
+                    result = false;
+                    playerIndicatorLights.piLight[playerIndex].GotoAndStop(0);
+                    if (screen.inputManagers[playerIndex].PlayerJoinState > PlayerJoinState.NotJoined)
 					{
-                        SmuckGame.ReadyPlayers[playerIndex] = false;
+                        screen.inputManagers[playerIndex].PlayerJoinState = PlayerJoinState.NotJoined;
                         needsUpdate = true;
 					}
 				}
@@ -139,6 +139,14 @@ namespace Smuck.Panels
 		public override void Activate()
 		{
 			base.Activate();
+            for (int i = 0; i < screen.inputManagers.Length; i++)
+            {
+                if (screen.inputManagers[i] != null)
+                {
+                    screen.inputManagers[i].PlayerJoinState = PlayerJoinState.NotJoined;
+                }
+            }
+            
 			needsUpdate = true;
 		}
 		public override void Deactivate()
@@ -149,12 +157,10 @@ namespace Smuck.Panels
 		void SignedInGamer_SignedIn(object sender, SignedInEventArgs e)
 		{
 			needsUpdate = true;
-            playerIndicatorLights.piLight[(int)e.Gamer.PlayerIndex].GotoAndStop(1);
 		}
 		void SignedInGamer_SignedOut(object sender, SignedOutEventArgs e)
 		{
             needsUpdate = true;
-            playerIndicatorLights.piLight[(int)e.Gamer.PlayerIndex].GotoAndStop(0);
 		}
 		public override void Update(GameTime gameTime)
 		{

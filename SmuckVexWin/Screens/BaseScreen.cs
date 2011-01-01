@@ -25,10 +25,12 @@ using Smuck.Audio;
 using Microsoft.Xna.Framework.GamerServices;
 
 namespace Smuck.Screens
-{
+{       
+    [V2DShaderAttribute(shaderType = typeof(DesaturationShader), param0 = 1f)]
     public abstract class BaseScreen : V2DScreen
     {
         public Level LevelKind = Level.Default;
+        public uint levelNumber;
 
         public static Random rnd = new Random((int)DateTime.Now.Ticks);
 
@@ -39,8 +41,7 @@ namespace Smuck.Screens
         protected V2DSprite[] border;
 
         [V2DSpriteAttribute(depthGroup = 30, categoryBits = Category.VEHICLE, maskBits = Category.DEFAULT | Category.VEHICLE | Category.PLAYER | Category.WATER | Category.GUIDERAIL, angularDamping = 9F)] // todo: mave ang damp to LV attribute
-        //[V2DShaderAttribute(shaderType = typeof(DesaturationShader), param0 = .2f)]
-        public LaneVehicle vehicle;
+         public LaneVehicle vehicle;
 
         [V2DSpriteAttribute(depthGroup = 35, categoryBits = Category.VEHICLE, maskBits = Category.VEHICLE | Category.PLAYER, angularDamping = 1000F)]
         protected TrainVehicle train;
@@ -57,6 +58,7 @@ namespace Smuck.Screens
         [SpriteAttribute(depthGroup = 0)]
         protected V2DSprite road;
 
+        [V2DShaderAttribute(shaderType = typeof(ParticleShader))]
         [V2DSpriteAttribute(depthGroup = 15)]
         public StarParticleGroup starParticles;
 
@@ -72,6 +74,7 @@ namespace Smuck.Screens
 
         private int iconDepthCount = 0;
         private int playerDepthCount = 0;
+        private int winningPlayer = -1;
 
         private float[,] startLocations = { { 525, 0, (float)(Math.PI) }, { 675, 0, (float)(Math.PI) }, { 525, 9, 0 }, { 675, 9, 0 } };
 
@@ -95,84 +98,44 @@ namespace Smuck.Screens
         public override void Initialize()
         {
             base.Initialize();
+        }
+        public override void AddedToStage(EventArgs e)
+        {
+            base.AddedToStage(e);
+        }
+        protected override void OnAddToStageComplete()
+        {
+            base.OnAddToStageComplete();
+
             gameOverlay = SmuckGame.GameOverlay;
-            gameOverlay.Visible = true;
-            isLevelOver = false;
+            gameOverlay.Activate();
+            isLevelOver = false; 
             summaryPosted = false;
+            winningPlayer = -1;
             SetGoals(9, 4);
 
             LaneInit();
             LevelInit();
-            gameOverlay.SetLevel(LevelKind);
-        }
-        public override void Activate()
-        {
-            base.Activate(); 
-        }
-        public override void Deactivate()
-        {
-            base.Deactivate();
-        }
-        protected virtual void LaneInit()
-        {
-            // default impl, don't call base if you don't want 8 lanes of traffic like this
-            laneCount = 10;
-            if (lanes == null)
+            gameOverlay.SetLevel(LevelKind, levelNumber);
+
+            if (defaultShader != null)
             {
-                lanes = new Lane[laneCount];
+                ((DesaturationShader)defaultShader).level = 1f;
             }
 
-            int[] speeds = new int[] { 5, 15, 20, 30, 40, 40, 30, 20, 15, 5 };
-
-            lanes[0] = new Lane(0, 67, LaneKind.Sidewalk);
-            lanes[0].vehicleSpeed = speeds[0];
-            lanes[0].minCreationDelay = 15000;
-            lanes[0].maxCreationDelay = 25000;
-            lanes[0].movesRight = false;
-            lanes[0].yLocation = 27;
-
-            for (int i = 1; i < lanes.Length; i++)
+            for (int i = 0; i < screen.inputManagers.Length; i++)
             {
-                lanes[i] = new Lane(i, 67, LaneKind.Car);
-                lanes[i].vehicleSpeed = speeds[i] + rnd.Next(10);
-                lanes[i].minCreationDelay = (int)(60000 / lanes[i].vehicleSpeed);
-                lanes[i].maxCreationDelay = 6000;
-                lanes[i].movesRight = i >= lanes.Length / 2;
-                lanes[i].yLocation = 88 + lanes[i].laneHeight * (i - 1);
-            }
-            lanes[lanes.Length - 1].LaneKind = LaneKind.Sidewalk;
-            lanes[lanes.Length - 1].vehicleSpeed = speeds[lanes.Length - 1];
-            lanes[lanes.Length - 1].minCreationDelay = 15000;
-            lanes[lanes.Length - 1].maxCreationDelay = 25000;
-        }
-
-        protected abstract void LevelInit();
-
-        public override void AddedToStage(EventArgs e)
-        {
-            base.AddedToStage(e);
-            for (int i = 0; i < SmuckGame.ReadyPlayers.Length; i++)
-            {
-                if(SmuckGame.ReadyPlayers[i])
+                if (screen.inputManagers[i] != null && screen.inputManagers[i].PlayerJoinState == PlayerJoinState.Joined)
                 {
                     CreatePlayer(i);
                 }
             }
-            //foreach (NetworkGamer g in NetworkManager.Session.AllGamers)//SmuckGame.instance.gamers)
-            //{
-            //    int gamerIndex = NetworkManager.Instance.GetGamerIndex(g);
-            //    CreatePlayer(gamerIndex);
-            //}
-//            AudioManager.PlaySound(AudioManager.backgroundMusic);
-//            AudioManager.PlaySound(AudioManager.trafficRumble);
-
+            
+            firstUpdate = true;
         }
         public override void Removed(EventArgs e)
         {
             base.RemovedFromStage(e);
-
-//            AudioManager.StopSound(AudioManager.backgroundMusic);
-//            AudioManager.StopSound(AudioManager.trafficRumble);
 
             foreach (SmuckPlayer p in players)
             {
@@ -208,13 +171,44 @@ namespace Smuck.Screens
             {
                 RemoveChild(starParticles);
             }
-            //foreach (StarParticleGroup spg in starParticles)
-            //{
-            //    RemoveChild(spg);
-            //}
+
+            gameOverlay = null;
+        }
+        protected virtual void LaneInit()
+        {
+            // default impl, don't call base if you don't want 8 lanes of traffic like this
+            laneCount = 10;
+            if (lanes == null)
+            {
+                lanes = new Lane[laneCount];
+            }
+
+            int[] speeds = new int[] { 5, 15, 20, 30, 40, 40, 30, 20, 15, 5 };
+
+            lanes[0] = new Lane(0, 67, LaneKind.Sidewalk);
+            lanes[0].vehicleSpeed = speeds[0];
+            lanes[0].minCreationDelay = 15000;
+            lanes[0].maxCreationDelay = 25000;
+            lanes[0].movesRight = false;
+            lanes[0].yLocation = 27;
+
+            for (int i = 1; i < lanes.Length; i++)
+            {
+                lanes[i] = new Lane(i, 67, LaneKind.Car);
+                lanes[i].vehicleSpeed = speeds[i] + rnd.Next(10);
+                lanes[i].minCreationDelay = (int)(60000 / lanes[i].vehicleSpeed);
+                lanes[i].maxCreationDelay = 6000;
+                lanes[i].movesRight = i >= lanes.Length / 2;
+                lanes[i].yLocation = 88 + lanes[i].laneHeight * (i - 1);
+            }
+            lanes[lanes.Length - 1].LaneKind = LaneKind.Sidewalk;
+            lanes[lanes.Length - 1].vehicleSpeed = speeds[lanes.Length - 1];
+            lanes[lanes.Length - 1].minCreationDelay = 15000;
+            lanes[lanes.Length - 1].maxCreationDelay = 25000;
         }
 
-
+        protected abstract void LevelInit();
+        
         public override bool OnPlayerInput(int playerIndex, Move move, TimeSpan time)
         {
             bool result = base.OnPlayerInput(playerIndex, move, time);
@@ -227,9 +221,13 @@ namespace Smuck.Screens
                     PauseAllVehicleSounds();
                     gameOverlay.PauseGame();
                 }
+                else if (gameOverlay.hasActivePanel)
+                {
+                    gameOverlay.OnPlayerInput(playerIndex, move, time);
+                }
                 else if (move == Move.ButtonA && !CheckRoundOver())
                 {
-                    if (pl == null || (pl != null && pl.LivingState == LivingState.Dead) )
+                    if (pl == null || (pl != null && pl.LivingState == LivingState.Dead))
                     {
                         InputManager im = inputManagers[playerIndex];
                         CreatePlayer(playerIndex);
@@ -237,7 +235,7 @@ namespace Smuck.Screens
                 }
                 else if (move == Move.ButtonY && !isLevelOver && pl.LivingState == LivingState.Alive)
                 {
-                    if (rnd.Next(10) == 0)
+                    if (rnd.Next(5) == 0)
                     {
                         Cue c = stage.audio.PlaySound(Sfx.screamTaz, onTazFinished);
                         pl.isExploding = true;
@@ -308,7 +306,7 @@ namespace Smuck.Screens
             DeadIcon di;
             if (this is SteamRollerScreen)
             {
-                di = (DeadIcon)CreateInstanceAt("flatteningPlayer", "deadIcons" + dIndex, p.X, p.Y, 0, iconDepthCount++);
+                di = (DeadIcon)CreateInstanceAt("flatteningPlayer" + (int)p.gamePadIndex, "deadIcons" + dIndex, p.X, p.Y, 0, iconDepthCount++);
             }
             else if (p.isExploding)
             {
@@ -404,15 +402,7 @@ namespace Smuck.Screens
 
                 // compact framework doesn't support Array.Find
                 // InputManager im = Array.Find(inputManagers, m => (m != null) && (m.NetworkGamer == g));
-                InputManager im = null;
-                for (int i = 0; i < inputManagers.Length; i++)
-                {
-                    if (inputManagers[i] != null && inputManagers[i].NetworkGamer == g)
-                    {
-                        im = inputManagers[i];
-                        break;
-                    }
-                }
+                InputManager im = inputManagers[gamerIndex];
                 im.Player = result;
 
             }
@@ -721,6 +711,16 @@ namespace Smuck.Screens
                                 // make it harder and harder after success level of points
                                 if (p.roundScore >= pointsToWinRound)
                                 {
+                                    if (winningPlayer == -1)
+                                    {
+                                        winningPlayer = i;
+                                        p.CreateFlameEffect();
+                                        if (defaultShader != null)
+                                        {
+                                            ((DesaturationShader)defaultShader).level = .2f;// (70f - starParticles.NumChildren) / 70f;
+                                        }
+                                    }
+
                                     if (endOnLastLane)
                                     {
                                         isLevelOver = true;
@@ -751,6 +751,14 @@ namespace Smuck.Screens
         public override void Draw(SpriteBatch batch)
         {
             base.Draw(batch);
+        }
+        public override void DestroyView()
+        {
+            base.DestroyView();
+            if (defaultShader != null)
+            {
+                ((DesaturationShader)defaultShader).level = 1f;
+            }
         }
     }
 }

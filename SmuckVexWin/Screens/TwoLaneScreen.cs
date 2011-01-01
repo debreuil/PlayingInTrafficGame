@@ -21,7 +21,7 @@ namespace Smuck.Screens
         protected override void LevelInit()
         {
             LevelKind = Level.TwoLane;
-            SetGoals(3, 2);//6);
+            SetGoals(3, 4);//6);
             this.endOnLastLane = true;
         }
         protected override void LaneInit()

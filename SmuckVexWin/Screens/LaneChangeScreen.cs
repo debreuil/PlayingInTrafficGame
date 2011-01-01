@@ -7,6 +7,7 @@ using V2DRuntime.V2D;
 using Smuck.Enums;
 using V2DRuntime.Attributes;
 using Smuck.Components;
+using DDW.Display;
 
 namespace Smuck.Screens
 {
@@ -34,20 +35,33 @@ namespace Smuck.Screens
             lanes[4].createVehicleOnStartup = false;
             lanes[5].createVehicleOnStartup = false;
         }
+
         public override void BeginContact(Box2D.XNA.Contact contact)
         {
             base.BeginContact(contact);
 
-            if (collisionObjA is LaneVehicle)
+            LaneVehicle v = null;
+            Sprite ch = null;
+
+            if (collisionObjA is LaneVehicle && collisionObjA.RootName == "laneChanger")
             {
-                if (collisionObjB.InstanceName == "laneChanger0")
+                v = (LaneVehicle)collisionObjA;
+                ch = collisionObjB;
+            }
+            else if (collisionObjB is LaneVehicle && collisionObjA.RootName == "laneChanger")
+            {
+                v = (LaneVehicle)collisionObjB;
+                ch = collisionObjA;  
+            }
+
+            if (v != null)
+            {
+                if (ch.Index == 0)
                 {
-                    LaneVehicle v = (LaneVehicle)collisionObjA;
                     v.laneY = lanes[v.Lane.laneIndex - 1].yLocation + (lanes[v.Lane.laneIndex - 1].laneHeight - v.VisibleHeight) / 2f;
                 }
-                else if (collisionObjB.InstanceName == "laneChanger1")
+                else
                 {
-                    LaneVehicle v = (LaneVehicle)collisionObjA;
                     v.laneY = lanes[v.Lane.laneIndex + 1].yLocation + (lanes[v.Lane.laneIndex + 1].laneHeight - v.VisibleHeight) / 2f + v.VisibleHeight;
                 }
             }

@@ -20,20 +20,21 @@ namespace Smuck.Shaders
 		protected override void LoadContent()
 		{
 			effect = V2DGame.contentManager.Load<Effect>("Test");
+            effect.CurrentTechnique = effect.Techniques[0];
 		}
         public override void Begin(SpriteBatch batch)
 		{
 			effect.Parameters["satLevel"].SetValue(level);
 
-			effect.CurrentTechnique.Passes[1].Apply();
             batch.Begin(
                  SpriteSortMode.Deferred,
                  BlendState.NonPremultiplied,
                  null, //SamplerState.AnisotropicClamp, 
                  null, //DepthStencilState.None, 
                  null, //RasterizerState.CullNone, 
-                 null,
+                 effect,
                  Stage.SpriteBatchMatrix);
+
 		}
         public override void End(SpriteBatch batch)
 		{

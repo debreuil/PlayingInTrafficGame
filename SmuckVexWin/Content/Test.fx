@@ -42,6 +42,14 @@ float4 PixelShader3(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : COLOR0
 
 technique Desaturate
 {
+    pass Pass1
+    {
+        PixelShader = compile ps_2_0 PixelShader1();
+    }
+}
+
+technique Desaturate2
+{
     pass NoEffect
     {
         PixelShader = compile ps_2_0 NoEffect();
