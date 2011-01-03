@@ -6,6 +6,7 @@ using V2DRuntime.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using DDW.V2D;
 using V2DRuntime.Tween;
+using Microsoft.Xna.Framework;
 
 namespace Smuck.Particles
 {
@@ -37,7 +38,9 @@ namespace Smuck.Particles
 		{
             base.BatchUpdate(gameTime);
 
-            pColor.A = (byte)Easing.Linear(t, 100f, -100f);
+            float a = Easing.Linear(t, 0.35f, -0.3f);
+            pColor = new Color(a, a, a, a);
+
             effectOrigin.X = 10f * r0;// Easing.Linear(t, 0, r1 * 90);//r2 * 2;			
             //particleCount = (int)Easing.Sin(t, 0, 10000, .5f);
             rotSpeed = Easing.EaseInCubic(t, 0f, -20f);

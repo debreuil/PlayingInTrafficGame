@@ -551,6 +551,12 @@ namespace Smuck.Components
             }
             starParticles = null;
 
+            if (steamParticles != null && children.Contains(steamParticles))
+            {
+                RemoveChild(steamParticles);
+            }
+            steamParticles = null;
+
             if (spacePsst != null)
             {
                 spacePsst.Stop(AudioStopOptions.Immediate);

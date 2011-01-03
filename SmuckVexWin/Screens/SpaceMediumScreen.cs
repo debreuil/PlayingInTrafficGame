@@ -73,6 +73,11 @@ namespace Smuck.Screens
         //        //((DesaturationShader)defaultShader).level = 1f;
         //    }
         //}
+        public override void AddedToStage(EventArgs e)
+        {
+            base.AddedToStage(e);
+            defaultShader = null;
+        }
         public override void Removed(EventArgs e)
         {
             base.Removed(e);

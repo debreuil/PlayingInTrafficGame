@@ -38,7 +38,9 @@ namespace Smuck.Particles
 		{
 			base.BatchUpdate(gameTime);
 
-			pColor.A = (byte)Easing.EaseOutQuint(t, 90f, -90f);
+            float a = Easing.EaseOutQuint(t, .8f, -.8f);
+            pColor = new Color(a, a, a, a);
+
 			effectOrigin.X = 10f * r0;
 			pScale.X =Easing.Linear(t, 0f, 15f) * particleScale;
 			pScale.Y = pScale.X; // r0 + 1f;

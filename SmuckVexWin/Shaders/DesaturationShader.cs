@@ -28,7 +28,7 @@ namespace Smuck.Shaders
 
             batch.Begin(
                  SpriteSortMode.Deferred,
-                 BlendState.NonPremultiplied,
+                 BlendState.AlphaBlend, //BlendState.NonPremultiplied,
                  null, //SamplerState.AnisotropicClamp, 
                  null, //DepthStencilState.None, 
                  null, //RasterizerState.CullNone, 

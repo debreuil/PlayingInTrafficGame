@@ -37,7 +37,7 @@ namespace Smuck.Components
         [SpriteAttribute(depthGroup = 100)]
         protected V2DSprite[] borderPanels;
 
-        [V2DShaderAttribute(shaderType = typeof(TextShader))]
+        //[V2DShaderAttribute(shaderType = typeof(TextShader))]
         [V2DSpriteAttribute(depthGroup = 200)]
         public ScoreView scores; 
         
