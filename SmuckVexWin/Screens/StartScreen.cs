@@ -97,7 +97,10 @@ namespace Smuck.Screens
 					}
 					else
 					{
-						panelStack.Peek().OnPlayerInput(playerIndex, move, time);
+                        if (panelStack.Count > 0)
+                        {
+                            panelStack.Peek().OnPlayerInput(playerIndex, move, time);
+                        }
 					}
 				}
 				else if (curState == MenuState.MainMenu && move == Move.ButtonB)
@@ -107,7 +110,10 @@ namespace Smuck.Screens
 				}
 				else
 				{
-                    panelStack.Peek().OnPlayerInput(playerIndex, move, time);
+                    if (panelStack.Count > 0)
+                    {
+                        panelStack.Peek().OnPlayerInput(playerIndex, move, time);
+                    }
 				}
 			}
 			return true;

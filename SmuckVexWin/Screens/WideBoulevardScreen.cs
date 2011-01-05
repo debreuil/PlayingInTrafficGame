@@ -36,15 +36,47 @@ namespace Smuck.Screens
         protected override void LevelInit()
         {
             LevelKind = Level.WideBoulevard;
-            TweenWorker tw = chopper.AnimateTo( new V2DRuntime.Tween.TweenState( new Vector2(300, -400), this.Rotation, this.Scale, this.Alpha, this.CurChildFrame), 5000);
-            tw.TweenComplete += new V2DRuntime.Display.TweenEvent(tw_TweenComplete);
-            chopper.PlayAll();
+        }
+        public override void Removed(EventArgs e)
+        {
+            base.Removed(e);
+            if (tw != null && chopper != null)
+            {
+                tw_TweenComplete(chopper, tw);
+            }
+            tw = null;
+            chopper = null;
         }
 
+
+        private TweenWorker tw;
+        private void StartChopper()
+        {
+            if (tw == null)
+            {
+                //chopper.Rotation = 90;
+                int chopperX = rnd.Next((int)ClientSize.X);
+                int destX = rnd.Next((int)ClientSize.X);
+                int chopperY = (int)ClientSize.Y + 400;
+                int destY = -400;
+
+                if (rnd.Next(2) == 0)
+                {
+                    destY = chopperY;
+                    chopperY = -400;
+                }
+                float rot = (float)(Math.Atan2(destY - chopperY, destX - chopperX) + Math.PI / 2f);
+                chopper = (Sprite)CreateInstanceAt("chopper", "chopper", chopperX, chopperY, rot, 500);
+                tw = chopper.AnimateTo(new V2DRuntime.Tween.TweenState(new Vector2(destX, destY), rot, this.Scale, this.Alpha, this.CurChildFrame), 5000);
+                tw.TweenComplete += new V2DRuntime.Display.TweenEvent(tw_TweenComplete);
+                chopper.PlayAll();
+            }
+        }
         void tw_TweenComplete(DisplayObject sender, TweenWorker worker)
         {
             sender.tweenWorker = null;
             sender.DestroyAfterUpdate();
+            tw = null;
         }
         protected override void LaneInit()
         {
@@ -53,6 +85,18 @@ namespace Smuck.Screens
             lanes[4].LaneKind = LaneKind.Empty;
             lanes[5].LaneKind = LaneKind.Empty;
             lanes[6].LaneKind = LaneKind.Empty;
+        }
+
+        int timeUntilNextChopper = 2000;
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            timeUntilNextChopper -= gameTime.ElapsedGameTime.Milliseconds;
+            if (timeUntilNextChopper <= 0)
+            {
+                timeUntilNextChopper = rnd.Next(15000) + 10000;
+                StartChopper();
+            }
         }
     }
 }

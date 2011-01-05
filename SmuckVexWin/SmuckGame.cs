@@ -59,10 +59,9 @@ namespace Smuck
             stage.AddScreen(titleScreen);
 
             levelNumber = 12;
-            //AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
-            //AddLevel("laneChangeScreen", typeof(LaneChangeScreen)); // must be 12th
-            //AddLevel("crosswalkScreen", typeof(CrosswalkScreen));
-            AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
+            //AddLevel("allCarsScreen", typeof(AllCarsScreen));
+            AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
+            //AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
 
             levelNumber = 0;
             AddLevel("twoLaneScreen", typeof(TwoLaneScreen)); // must be first

@@ -5,6 +5,8 @@ using DDW.V2D;
 using Smuck.Shaders;
 using V2DRuntime.V2D;
 using Smuck.Enums;
+using V2DRuntime.Attributes;
+using DDW.Display;
 
 namespace Smuck.Screens
 {
@@ -35,6 +37,34 @@ namespace Smuck.Screens
             //lanes[7].LaneKind = LaneKind.Empty;
             //lanes[8].LaneKind = LaneKind.Empty;
 
+        }
+        [SpriteAttribute(depthGroup = 90)]
+        protected Sprite popupStevie;
+
+        bool steviePlayed = false;
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (steviePlayed && popupStevie.isPlaying && popupStevie.CurChildFrame == popupStevie.FrameCount - 1)
+            {
+                popupStevie.Stop();
+            }
+            else if (popupStevie.CurChildFrame == 2)
+            {
+                steviePlayed = true;
+            }
+        }
+        protected override Smuck.Components.SmuckPlayer CreatePlayer(int gamerIndex)
+        {
+            int rn = rnd.Next(100);
+            Console.WriteLine(rn);
+            if (popupStevie.CurFrame == 0 && rn < 5)
+            {
+                popupStevie.GotoAndPlay(1);
+                steviePlayed = false;
+                stage.audio.PlaySound("stevie_dodge");
+            }
+            return base.CreatePlayer(gamerIndex);
         }
     }
 }

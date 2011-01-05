@@ -15,9 +15,6 @@ namespace Smuck.Screens
     
     public class AllTrainScreen : BaseScreen
     {
-        [SpriteAttribute(depthGroup = 90)]
-        protected Sprite popupStevie;
-
         public AllTrainScreen(V2DContent v2dContent): base(v2dContent)
         {
         }
@@ -48,29 +45,6 @@ namespace Smuck.Screens
             lanes[4].minCreationDelay = 10000;
             lanes[5].LaneKind = LaneKind.Shinkansen;
             lanes[5].minCreationDelay = 10000;
-        }
-        bool steviePlayed = false;
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            base.Update(gameTime);
-            if (steviePlayed && popupStevie.isPlaying && popupStevie.CurChildFrame == popupStevie.FrameCount - 1)
-            {
-                popupStevie.Stop();
-            }
-            else if(popupStevie.CurChildFrame == 2)
-            {
-                steviePlayed = true;
-            }
-        }
-        protected override Smuck.Components.SmuckPlayer CreatePlayer(int gamerIndex)
-        {
-            if (popupStevie.CurFrame == 0)
-            {
-                popupStevie.GotoAndPlay(1);
-                steviePlayed = false;
-                stage.audio.PlaySound("stevie_dodge");
-            }
-            return base.CreatePlayer(gamerIndex);
         }
     }
 }
