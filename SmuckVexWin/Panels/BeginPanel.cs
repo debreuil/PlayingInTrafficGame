@@ -96,11 +96,11 @@ namespace Smuck.Panels
                 {
                     bool needsSignIn = false;
 #if XBOX
-                    needsSignIn = playerIndex <= SignedInGamer.SignedInGamers.Count || SignedInGamer.SignedInGamers[playerIndex] == null;
-                    if (needsSignIn)
-                    {
-                        ShowSignIn();
-                    }
+                    //needsSignIn = playerIndex >= SignedInGamer.SignedInGamers.Count || SignedInGamer.SignedInGamers[playerIndex] == null;
+                    //if (needsSignIn)
+                    //{
+                    //    ShowSignIn();
+                    //}
 #endif
                     InputManager im = screen.inputManagers[playerIndex];
                     playerIndicatorLights.piLight[playerIndex].GotoAndStop(1);

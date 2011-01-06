@@ -76,7 +76,7 @@ namespace Smuck.Screens
         private int playerDepthCount = 0;
         private int winningPlayer = -1;
 
-        private float[,] startLocations = { { 525, 0, (float)(Math.PI) }, { 675, 0, (float)(Math.PI) }, { 525, 9, 0 }, { 675, 9, 0 } };
+        private float[,] startLocations = { { 525, 0, (float)(Math.PI) }, { 675, 0, (float)(Math.PI) }, { 525, -1, 0 }, { 675, -1, 0 } };
 
         public BaseScreen(V2DContent v2dContent) : base(v2dContent)
         {
@@ -258,6 +258,16 @@ namespace Smuck.Screens
                 //   pl.CreateFlameEffect();
                 //}
             }
+            else
+            {
+                // new player joining                
+                if (move == Move.ButtonA)
+                {
+                    InputManager im = inputManagers[playerIndex];
+                    im.PlayerJoinState = PlayerJoinState.Joined;
+                    CreatePlayer(playerIndex);
+                }
+            }
             return result;
         }
 
@@ -369,7 +379,7 @@ namespace Smuck.Screens
                 //PlayerIndex gamePadIndex = (PlayerIndex)(players.FindAll(p => p.isLocal).Count);
                 result = (SmuckPlayer)CreateInstanceAt("player" + gamerIndex, "players" + gamerIndex,
                     startLocations[gamerIndex, 0],
-                    startLocations[gamerIndex, 1],
+                    0,
                     startLocations[gamerIndex, 2],
                     playerDepthCount++);
 
@@ -408,7 +418,7 @@ namespace Smuck.Screens
             }
 
             result.laneCount = lanes.Length;
-            int startLane = (int)startLocations[gamerIndex, 1];
+            int startLane = startLocations[gamerIndex, 1] == 0 ? 0 : result.laneCount - 1;
             result.snapLaneY = lanes[startLane].yLocation + lanes[startLane].laneHeight / 2;
             result.Reset(startLocations[gamerIndex, 0], result.snapLaneY, startLocations[gamerIndex, 2]);
             result.Lane = lanes[GetLaneFromY((int)result.Y)];

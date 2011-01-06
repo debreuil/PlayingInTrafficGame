@@ -110,10 +110,6 @@
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
-    <Reference Include="VexPipelineReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SWF2XNA\VexPipeline\bin\x86\Release\VexPipelineReader.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\Sfx.cs" />
@@ -266,13 +262,17 @@
     <None Include="Library\vehicles.fla" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SWF2XNA\Box2D.XNA\Box2D.XNA - windows.csproj">
+    <ProjectReference Include="..\..\SWF2XNA\Box2D.XNA\Box2D.XNA.csproj">
       <Project>{22791486-E721-4511-AA4B-DA26CF5D0F2E}</Project>
-      <Name>Box2D.XNA - windows</Name>
+      <Name>Box2D.XNA</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\SWF2XNA\V2DRuntime\V2DRuntime.csproj">
       <Project>{269A1048-DA2C-475A-9C10-564A7D8A071D}</Project>
       <Name>V2DRuntime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SWF2XNA\VexPipelineReader\VexPipelineReader.csproj">
+      <Project>{D5D6310E-2D9D-4931-8D3B-4574F6625C6A}</Project>
+      <Name>VexPipelineReader</Name>
     </ProjectReference>
     <ProjectReference Include="Content\TrafficContent.contentproj">
       <Project>{87B42220-FCC5-43B6-BB5B-F06D892AFA74}</Project>

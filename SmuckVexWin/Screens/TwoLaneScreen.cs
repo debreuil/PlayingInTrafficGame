@@ -47,6 +47,7 @@ namespace Smuck.Screens
                 lanes[i].yLocation = laneTop + lanes[i].laneHeight * (i - 1);
             }
             lanes[lanes.Length - 1].LaneKind = LaneKind.Empty;
+            lanes[lanes.Length - 1].laneHeight = 120;
         }
     }
 }

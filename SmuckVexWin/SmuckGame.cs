@@ -60,7 +60,7 @@ namespace Smuck
 
             levelNumber = 12;
             //AddLevel("allCarsScreen", typeof(AllCarsScreen));
-            AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
+            //AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
             //AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
 
             levelNumber = 0;

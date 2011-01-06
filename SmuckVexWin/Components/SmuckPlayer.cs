@@ -63,7 +63,6 @@ namespace Smuck.Components
         public SmuckPlayer(Texture2D texture, V2DInstance instance) : base(texture, instance)
         {
         }
-
         public bool IsOnWater
         {
             get {return isOnWater;}
@@ -100,6 +99,14 @@ namespace Smuck.Components
 		{
 			get { return speedLevel; }
 			set { speedLevel = value; maxSpeed = speeds[(int)speedLevel]; }
+        }
+        public void ResetGameScore()
+        {
+            totalScore = 0;
+            roundFinalScore = 0;
+            roundScore = 0;
+            roundBestScore = 0;
+            previousTotalScore = 0;
         }
 		public void Reset(float x, float y, float rot)
 		{

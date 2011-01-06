@@ -183,7 +183,7 @@ namespace Smuck.Screens
                     }
                     else
                     {
-                        stage.NextScreen();
+                        OnStartGame();
                     }
                     break;
 
@@ -227,7 +227,13 @@ namespace Smuck.Screens
 		protected void OnStartGame()
         {
             //AudioManager.PlaySound(AudioManager.beginPlay);
-            //stage.SetScreen("level1Screen");
+            for (int i = 0; i < inputManagers.Length; i++)
+            {
+                if (inputManagers[i] != null && inputManagers[i].Player != null)
+                {
+                    ((SmuckPlayer)inputManagers[i].Player).ResetGameScore();
+                }
+            }
 			stage.NextScreen();
 		}
     }

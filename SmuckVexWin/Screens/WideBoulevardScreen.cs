@@ -81,7 +81,7 @@ namespace Smuck.Screens
         protected override void LaneInit()
         {
             base.LaneInit();
-            lanes[3].LaneKind = LaneKind.Empty;
+            lanes[3].LaneKind = LaneKind.Empty; 
             lanes[4].LaneKind = LaneKind.Empty;
             lanes[5].LaneKind = LaneKind.Empty;
             lanes[6].LaneKind = LaneKind.Empty;
