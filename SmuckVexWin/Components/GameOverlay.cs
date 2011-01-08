@@ -163,7 +163,14 @@ namespace Smuck.Components
         {
             endRoundPanel.Deactivate();
             hasActivePanel = false;
-            stage.NextScreen();
+            if (stage.GetCurrentScreen() is SteamRollerScreen)
+            {
+                SmuckGame.instance.AllLevelsComplete();
+            }
+            else
+            {
+                stage.NextScreen();
+            }
         }
 
     }

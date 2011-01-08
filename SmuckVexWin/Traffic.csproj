@@ -120,9 +120,6 @@
     <Compile Include="Components\GameOverlay.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\HighScoreElement.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Components\Lane.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -163,7 +160,6 @@
     <Compile Include="Panels\BeginPanel.cs" />
     <Compile Include="Panels\EndRoundPanel.cs" />
     <Compile Include="Panels\ExitPanel.cs" />
-    <Compile Include="Panels\HighScorePanel.cs" />
     <Compile Include="Panels\InstructionsPanel.cs" />
     <Compile Include="Panels\LobbyPanel.cs" />
     <Compile Include="Panels\MainMenuPanel.cs" />

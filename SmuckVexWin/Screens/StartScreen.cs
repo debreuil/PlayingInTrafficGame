@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Smuck.Audio;
 using Smuck.Components;
 using V2DRuntime.Attributes;
+using V2DRuntime.Panels;
 
 namespace Smuck.Screens
 {
@@ -52,6 +53,7 @@ namespace Smuck.Screens
 
             panels = new Panel[] { beginPanel, mainMenuPanel, /*networkPanel, lobbyPanel,*/ optionsPanel, highScorePanel, instructionsPanel, exitPanel };
  		}
+        public bool allLevelsComplete = false;
 		protected override void OnAddToStageComplete()
 		{
 			base.OnAddToStageComplete();
@@ -63,10 +65,15 @@ namespace Smuck.Screens
 				SetPanel(MenuState.Begin);
 				firstTimeDisplayed = false;
 			}
-			else
-			{
-				SetPanel(MenuState.MainMenu);
-			}
+            else if (allLevelsComplete)
+            {
+                SetPanel(MenuState.HighScores);
+                allLevelsComplete = false;
+            }
+            else
+            {
+                SetPanel(MenuState.MainMenu);
+            }
 		}
 		public override void AddedToStage(EventArgs e)
 		{
@@ -143,19 +150,9 @@ namespace Smuck.Screens
 					panelStack.Push(instructionsPanel);
 					//curPanel = instructionsPanel;
                     break;
-                case MenuState.NetworkGame:
-					panelStack.Push(networkPanel);
-					//curPanel = networkPanel;
-                    break;
-                case MenuState.Lobby:
-					panelStack.Push(lobbyPanel);
-					//curPanel = lobbyPanel;
-                    break;
-                case MenuState.HostGame:
-                    //curPanel = ;
-                    break;
-                case MenuState.JoinGame:
-                    //curPanel = ;
+
+                case MenuState.UnlockTrial:
+                    SmuckGame.instance.UnlockTrial();
                     break;
 
                 case MenuState.Options:
@@ -187,9 +184,6 @@ namespace Smuck.Screens
                     }
                     break;
 
-                case MenuState.UnlockTrial:
-					//Guide.ShowMarketplace(Microsoft.Xna.Framework.PlayerIndex);
-                    break;
             }
 
 			buttonGuide.Visible = (state == MenuState.Begin) ? false : true;

@@ -7,6 +7,7 @@ using Smuck.Shaders;
 using DDW.Display;
 using System.Collections.Generic;
 using V2DRuntime.Attributes;
+using System;
 namespace Smuck.Screens
 {
     //[V2DShaderAttribute(shaderType = typeof(DesaturationShader), param0 = 1f)]
@@ -50,6 +51,20 @@ namespace Smuck.Screens
             lanes[steamLane].minCreationDelay = 2000;
             lanes[steamLane].maxCreationDelay = 6000;
             lanes[steamLane].movesRight = false;
+        }
+        public override void Removed(EventArgs e)
+        {
+            base.RemovedFromStage(e);
+            steamRoller = null;
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (steamRoller != null && steamRoller.X < -100)
+            {
+                isLevelOver = true;
+            }
         }
     }
 }

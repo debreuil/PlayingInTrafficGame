@@ -28,8 +28,8 @@ namespace Smuck.Panels
 				case ExitButton.Back:
 					SmuckGame.instance.ExitToMainMenu();
 					break;
-				case ExitButton.UnlockTrial:
-					//Guide.ShowMarketplace(Microsoft.Xna.Framework.PlayerIndex);
+                case ExitButton.UnlockTrial:
+                    SmuckGame.instance.UnlockTrial();
 					break;
 			}
         }

@@ -15,12 +15,13 @@ using DDW.Display;
 using Smuck.Components;
 using Smuck.Enums;
 using System.Reflection;
+using System.IO;
+using Microsoft.Xna.Framework.Storage;
 
 namespace Smuck
 {
     public class SmuckGame : V2DGame
     {
-        public static List<HighScoreElement> highScores;
         public static List<Level> Levels;
         // static bool[] ReadyPlayers = new bool[] { false, false, false, false };
 
@@ -49,9 +50,11 @@ namespace Smuck
 			base.LoadContent();
 			FontManager.Instance.AddFont("Arial Black", V2DGame.contentManager.Load<SpriteFont>(@"ArialBlack"));
             stage.InitializeAudio(@"Content\audio\smuck.xgs", @"Content\audio\Wave Bank.xwb", @"Content\audio\Sound Bank.xsb");
+
+            Guide.SimulateTrialMode = true;
 		}
 
-        Screen titleScreen;
+        StartScreen titleScreen;
         protected override void CreateScreens()
         {
             SymbolImport si = new SymbolImport("titleScreen", "entryScreen");
@@ -62,10 +65,11 @@ namespace Smuck
             //AddLevel("allCarsScreen", typeof(AllCarsScreen));
             //AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
             //AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
+            AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
 
             levelNumber = 0;
             AddLevel("twoLaneScreen", typeof(TwoLaneScreen)); // must be first
-
+             
             AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
             AddLevel("crosswalkScreen", typeof(CrosswalkScreen));
             AddLevel("twoTrainTwoRestScreen", typeof(TwoTrainTwoRestScreen));
@@ -140,42 +144,18 @@ namespace Smuck
 			base.RemoveGamer(gamer);
 		}
 
-        public List<HighScoreElement> GetHighScores()
-        {
-            LoadHighScores();
-            highScores.Sort();
-            return highScores;
-        }
-        public void SetHighScores(List<HighScoreElement> hs)
-        {
-            highScores = hs;
-            SaveHighScores();
-        }
-        protected void LoadHighScores()
-        {
-            if (highScores == null)
-            {
-                highScores = new List<HighScoreElement> { 
-                    new HighScoreElement("aaa", 67, true),
-                    new HighScoreElement( "bbb", 37, true),
-                    new HighScoreElement( "avvvaa", 38, true),
-                    new HighScoreElement( "ddssa", 127, true),
-                    new HighScoreElement( "erwwer", 142, true),
-                    new HighScoreElement( "uukjlkh", 97, true),
-                    new HighScoreElement( "yuiyu", 34, true),
-                    new HighScoreElement( "nmzxczx", 55, true), };
-            }
-        }
-        protected void SaveHighScores()
-        {
-            //highScores = new int[]{67,34,23,98,125,25};
-        }
 
-		public override void ExitToMainMenu()
-		{
-			base.ExitToMainMenu();
-			stage.SetScreen("entryScreen");
-		}
+        public override void ExitToMainMenu()
+        {
+            base.ExitToMainMenu();
+            stage.SetScreen("entryScreen");
+        }
+        public override void AllLevelsComplete()
+        {
+            base.ExitToMainMenu();
+            titleScreen.allLevelsComplete = true;
+            stage.SetScreen("entryScreen");
+        }
         protected override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);
