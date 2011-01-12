@@ -11,12 +11,15 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework;
 using DDW.Input;
 using Microsoft.Xna.Framework.Input;
+using DDW.Display;
 
 namespace Smuck.Panels
 {
 	public class PausedPanel : Panel
 	{
-		public ButtonTabGroup menuButtons;
+        public ButtonTabGroup menuButtons;
+        public Sprite xIcon;
+
 		private enum ExitButton { Back, Exit, UnlockTrial };
 
 		public PausedPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
@@ -50,7 +53,7 @@ namespace Smuck.Panels
 					//{
 					//    if(ng.
 					//}
-					Guide.ShowMarketplace((PlayerIndex)playerIndex);
+                    SmuckGame.instance.UnlockTrial();
 					break;
 			}
 		}
@@ -66,6 +69,17 @@ namespace Smuck.Panels
 			base.Deactivate();
 			menuButtons.OnClick -= new ButtonEventHandler(menuButtons_OnClick);
 		}
-		public event EventHandler Unpause;
+        public event EventHandler Unpause;
+
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (menuButtons.element[2].Visible == true && !Guide.IsTrialMode)
+            {
+                menuButtons.element[2].Visible = false;
+                xIcon.Visible = false;
+                menuButtons.SetFocus(0);
+            }
+        }
 	}
 }

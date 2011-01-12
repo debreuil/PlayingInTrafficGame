@@ -27,7 +27,6 @@ namespace Smuck
 
 		public SmuckGame():base()
 		{
-			Components.Add(new GamerServicesComponent(this));
 		}
 
         private static GameOverlay gameOverlay;
@@ -156,6 +155,7 @@ namespace Smuck
             titleScreen.allLevelsComplete = true;
             stage.SetScreen("entryScreen");
         }
+
         protected override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);

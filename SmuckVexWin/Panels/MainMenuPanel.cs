@@ -11,6 +11,7 @@ using V2DRuntime.Display;
 using Smuck.Screens;
 using Smuck.Enums;
 using Smuck.Audio;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace Smuck.Panels
 {
@@ -56,6 +57,17 @@ namespace Smuck.Panels
             base.Deactivate();
 			menuButtons.OnClick -= new ButtonEventHandler(menuButtons_OnClick);
             menuButtons.OnFocusChanged -= new FocusChangedEventHandler(menuButtons_OnFocusChanged);
+        }
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (menuButtons.element[2].Visible == true && !Guide.IsTrialMode)
+            {
+                menuButtons.element[4].Y = menuButtons.element[3].Y;
+                menuButtons.element[3].Y = menuButtons.element[2].Y;
+                menuButtons.element[2].Visible = false;
+                menuButtons.SetFocus(0);
+            }
         }
     }
 }

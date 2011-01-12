@@ -8,12 +8,15 @@ using V2DRuntime.Components;
 using Microsoft.Xna.Framework.Graphics;
 using DDW.V2D;
 using Smuck.Audio;
+using DDW.Display;
 
 namespace Smuck.Panels
 {
 	public class ExitPanel : Panel
 	{
 		public ButtonTabGroup menuButtons;
+        public Sprite xIcon;
+
 		private enum ExitButton { Exit, Back, UnlockTrial };
 
 		public ExitPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
@@ -43,6 +46,7 @@ namespace Smuck.Panels
 			menuButtons.SetFocus(0);
             menuButtons.OnClick += new ButtonEventHandler(menuButtons_OnClick);
             menuButtons.OnFocusChanged += new FocusChangedEventHandler(menuButtons_OnFocusChanged);
+
 		}
 		public override void RemovedFromStage(EventArgs e)
 		{
@@ -50,6 +54,17 @@ namespace Smuck.Panels
             menuButtons.OnClick -= new ButtonEventHandler(menuButtons_OnClick);
             menuButtons.OnFocusChanged -= new FocusChangedEventHandler(menuButtons_OnFocusChanged);
 		}
+
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (menuButtons.element[2].Visible == true && !Guide.IsTrialMode)
+            {
+                menuButtons.element[2].Visible = false;
+                xIcon.Visible = false;
+                menuButtons.SetFocus(1);
+            }
+        }
 
 	}
 }
