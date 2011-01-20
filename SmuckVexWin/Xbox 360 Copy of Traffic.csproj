@@ -138,6 +138,8 @@
     <Compile Include="Panels\OptionsPanel.cs" />
     <Compile Include="Panels\PausedPanel.cs" />
     <Compile Include="Panels\PrescreenPanel.cs" />
+    <Compile Include="Panels\TrafficSplashPanel.cs" />
+    <Compile Include="Panels\TrialExpiredPanel.cs" />
     <Compile Include="Particles\DirectionalParticle.cs" />
     <Compile Include="Particles\StarParticleGroup.cs" />
     <Compile Include="Particles\StarParticles.cs" />

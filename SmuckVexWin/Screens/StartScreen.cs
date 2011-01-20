@@ -16,19 +16,23 @@ using Smuck.Audio;
 using Smuck.Components;
 using V2DRuntime.Attributes;
 using V2DRuntime.Panels;
+using Microsoft.Xna.Framework;
 
 namespace Smuck.Screens
 {
     public class StartScreen : V2DScreen
     {
         public Sprite bkg2;
+        public Sprite trafficLogo;
+		public TrafficSplashPanel splashPanel;
 		public BeginPanel beginPanel;
         public MainMenuPanel mainMenuPanel;
         public LobbyPanel lobbyPanel;
         public NetworkGamePanel networkPanel;
         public OptionsPanel optionsPanel;
         public HighScorePanel highScorePanel;
-		public InstructionsPanel instructionsPanel;
+        public InstructionsPanel instructionsPanel;
+        public TrialExpiredPanel trialPanel;
 		public ExitPanel exitPanel;
 
 		private bool firstTimeDisplayed = true;
@@ -51,7 +55,7 @@ namespace Smuck.Screens
 		{
 			base.Initialize();
 
-            panels = new Panel[] { beginPanel, mainMenuPanel, /*networkPanel, lobbyPanel,*/ optionsPanel, highScorePanel, instructionsPanel, exitPanel };
+            panels = new Panel[] { splashPanel, beginPanel, mainMenuPanel, trialPanel, optionsPanel, highScorePanel, instructionsPanel, exitPanel };
  		}
         public bool allLevelsComplete = false;
 		protected override void OnAddToStageComplete()
@@ -62,7 +66,7 @@ namespace Smuck.Screens
 
 			if (firstTimeDisplayed)
 			{
-				SetPanel(MenuState.Begin);
+				SetPanel(MenuState.Splash);
 				firstTimeDisplayed = false;
 			}
             else if (allLevelsComplete)
@@ -79,7 +83,7 @@ namespace Smuck.Screens
 		{
 			base.AddedToStage(e);
             NetworkManager.Instance.OnGameStarted += new NetworkManager.GameStartedDelegate(OnStartGame);
-//            AudioManager.PlaySound(AudioManager.backgroundMusic);
+//          AudioManager.PlaySound(AudioManager.backgroundMusic);
 		}
 		public override void RemovedFromStage(EventArgs e)
 		{
@@ -128,27 +132,27 @@ namespace Smuck.Screens
 
         public void SetPanel(MenuState state)
         {
+            trafficLogo.Visible = (state != MenuState.Splash);
+
             switch (state)
             {
 				case MenuState.Empty:
 					panelStack.Clear();
-                    //curPanel = mainMenuPanel;
+                    break;
+                case MenuState.Splash:
+                    panelStack.Push(splashPanel);
                     break;
                 case MenuState.Begin:
-					panelStack.Push(beginPanel);
-                    //curPanel = mainMenuPanel;
+                    panelStack.Push(beginPanel);
                     break;
                 case MenuState.MainMenu:
 					panelStack.Push(mainMenuPanel);
-                    //curPanel = mainMenuPanel;
                     break;
                 case MenuState.HighScores:
 					panelStack.Push(highScorePanel);
-					//curPanel = highScorePanel;
                     break;
                 case MenuState.Instructions:
 					panelStack.Push(instructionsPanel);
-					//curPanel = instructionsPanel;
                     break;
 
                 case MenuState.UnlockTrial:
@@ -157,12 +161,10 @@ namespace Smuck.Screens
 
                 case MenuState.Options:
 					panelStack.Push(optionsPanel);
-					//curPanel = optionsPanel;
                     break;
 
                 case MenuState.Exit:
 					panelStack.Push(exitPanel);
-					//curPanel = exitPanel;
                     break;
 
                 case MenuState.QuickGame:
@@ -229,6 +231,18 @@ namespace Smuck.Screens
                 }
             }
 			stage.NextScreen();
-		}
+        }
+
+        public MenuState nextState = MenuState.Empty;
+        public override void OnUpdateComplete(GameTime gameTime)
+        {
+            base.OnUpdateComplete(gameTime);
+            if (nextState != MenuState.Empty)
+            {
+                MenuState tempState = nextState;
+                nextState = MenuState.Empty;
+                SetPanel(tempState);
+            }
+        }
     }
 }

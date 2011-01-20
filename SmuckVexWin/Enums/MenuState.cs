@@ -8,6 +8,7 @@ namespace Smuck.Enums
     public enum MenuState
 	{
 		Empty,
+		Splash,
 		Begin,
 		MainMenu,
         NetworkGame,

@@ -13,6 +13,7 @@ using Smuck.Panels;
 using Smuck.Screens;
 using Smuck.Audio;
 using V2DRuntime.V2D;
+using V2DRuntime.Display;
 
 namespace Smuck.Components
 {
@@ -21,6 +22,9 @@ namespace Smuck.Components
     {
     //    [V2DSpriteAttribute(categoryBits = Category.BORDER, maskBits = Category.DEFAULT | Category.ICON | Category.PLAYER, isStatic = true, allowSleep = false)]
     //    protected V2DSprite[] border;
+
+        [SpriteAttribute(depthGroup = 1000)]
+        public TrialExpiredPanel trialPanel;
 
         [SpriteAttribute(depthGroup = 1000)]
         public PrescreenPanel prescreenPanel;
@@ -39,8 +43,9 @@ namespace Smuck.Components
 
         //[V2DShaderAttribute(shaderType = typeof(TextShader))]
         [V2DSpriteAttribute(depthGroup = 200)]
-        public ScoreView scores; 
-        
+        public ScoreView scores;
+
+        protected Panel[] panels;
         public bool hasActivePanel = false;
 
         public GameOverlay(V2DContent v2dContent) : base(v2dContent)
@@ -55,7 +60,8 @@ namespace Smuck.Components
 
         public override void Initialize()
         {
-            base.Initialize();
+            base.Initialize(); 
+            panels = new Panel[] { pausedPanel, prescreenPanel, endRoundPanel, trialPanel };
         }
 
         public override void Activate()
@@ -75,10 +81,12 @@ namespace Smuck.Components
             pausedPanel.Unpause += new EventHandler(pausedPanel_Unpause);
             endRoundPanel.Continue += new EventHandler(endRoundPanel_Continue);
 
-            pausedPanel.Deactivate();
-            endRoundPanel.Deactivate();
-            prescreenPanel.Activate();
-            hasActivePanel = true;
+            SetPanel(PanelType.PreRound);
+            //trialPanel.Deactivate();
+            //pausedPanel.Deactivate();
+            //endRoundPanel.Deactivate();
+            //prescreenPanel.Activate();
+            //hasActivePanel = true;
         }
         public override void Deactivate()
         {
@@ -86,19 +94,14 @@ namespace Smuck.Components
 
             this.visible = false;
 
-            prescreenPanel.Deactivate();
-            pausedPanel.Deactivate();
-            endRoundPanel.Deactivate();
+            SetPanel(PanelType.Empty);
+            //prescreenPanel.Deactivate();
+            //pausedPanel.Deactivate();
+            //endRoundPanel.Deactivate();
 
             prescreenPanel.Continue -= new EventHandler(prescreenPanel_Continue);
             pausedPanel.Unpause -= new EventHandler(pausedPanel_Unpause);
             endRoundPanel.Continue -= new EventHandler(endRoundPanel_Continue);
-        }
-        void prescreenPanel_Continue(object sender, EventArgs e)
-        {
-//            prescreenPanel.Continue -= new EventHandler(prescreenPanel_Continue);
-            prescreenPanel.Deactivate();
-            hasActivePanel = false;
         }
 
         public void SetLevel(Level levelEnum, uint levelNumber)
@@ -132,37 +135,37 @@ namespace Smuck.Components
             scores.txScore[pIndex].Text = p.roundScore.ToString();// +"/" + pointsToWinRound.ToString();
             scores.laneCrossIndicator[pIndex].Count = (int)((p.roundScore + 1) / pointsPerCrossing);
         }
+
         public void PauseGame()
         {
-            if (prescreenPanel.isActive)
-            {
-                prescreenPanel.Deactivate();
-            }
-            pausedPanel.Activate();
-            stage.audio.PauseSound(Sfx.backgroundMusic);
-            hasActivePanel = true;
+            SetPanel(PanelType.Paused);
         }
-        protected void pausedPanel_Unpause(object sender, EventArgs e)
+        public void ResumeGame()
         {
-            pausedPanel.Deactivate();
+            SetPanel(PanelType.Empty);
             if (screen is BaseScreen)
             {
                 ((BaseScreen)screen).ResumeAllVehicleSounds();
             }
-            stage.audio.ResumeSound(Sfx.backgroundMusic);
-            hasActivePanel = false;
+        }
+        protected void pausedPanel_Unpause(object sender, EventArgs e)
+        {
+            ResumeGame();
+        }
+
+        void prescreenPanel_Continue(object sender, EventArgs e)
+        {
+            SetPanel(PanelType.Empty);
         }
 
         public void EndRound()
         {
-            endRoundPanel.Activate();
+            SetPanel(PanelType.PostRound);
             stage.audio.PauseSound(Sfx.backgroundMusic);
-            hasActivePanel = true;
         }
         void endRoundPanel_Continue(object sender, EventArgs e)
         {
-            endRoundPanel.Deactivate();
-            hasActivePanel = false;
+            SetPanel(PanelType.Empty);
             if (stage.GetCurrentScreen() is SteamRollerScreen)
             {
                 SmuckGame.instance.AllLevelsComplete();
@@ -173,5 +176,64 @@ namespace Smuck.Components
             }
         }
 
+        public void TrialExpired()
+        {
+            SetPanel(PanelType.TrialExpired);
+        }
+
+        private void SetPanel(PanelType panelType)
+        {
+            Panel nextPanel = null;
+            hasActivePanel = true;
+            switch (panelType)
+            {
+                case PanelType.Empty:
+                    hasActivePanel = false;
+                    break;
+                case PanelType.Paused:
+                    nextPanel = pausedPanel;
+                    break;
+                case PanelType.PreRound:
+                    nextPanel = prescreenPanel;
+                    break;
+                case PanelType.PostRound:
+                    nextPanel = endRoundPanel;
+                    break;
+                case PanelType.TrialExpired:
+                    nextPanel = trialPanel;
+                    break;
+            }
+
+            for (int i = 0; i < panels.Length; i++)
+            {
+                if (panels[i] == nextPanel)
+                {
+                    panels[i].Activate();
+                }
+                else
+                {
+                    panels[i].Deactivate();
+                }
+            }
+
+            if (hasActivePanel)
+            {
+                stage.audio.PauseSound(Sfx.backgroundMusic);
+            }
+            else
+            {
+                stage.audio.ResumeSound(Sfx.backgroundMusic);
+            }
+        }
+
+        private enum PanelType
+        {
+            Empty,
+            Paused,
+            PreRound,
+            PostRound,
+            TrialExpired,
+        }
     }
+
 }

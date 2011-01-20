@@ -50,7 +50,7 @@ namespace Smuck
 			FontManager.Instance.AddFont("Arial Black", V2DGame.contentManager.Load<SpriteFont>(@"ArialBlack"));
             stage.InitializeAudio(@"Content\audio\smuck.xgs", @"Content\audio\Wave Bank.xwb", @"Content\audio\Sound Bank.xsb");
 
-            Guide.SimulateTrialMode = true;
+            //Guide.SimulateTrialMode = true;
 		}
 
         StartScreen titleScreen;
@@ -64,7 +64,7 @@ namespace Smuck
             //AddLevel("allCarsScreen", typeof(AllCarsScreen));
             //AddLevel("wideBoulevardScreen", typeof(WideBoulevardScreen));
             //AddLevel("spaceMediumScreen", typeof(SpaceMediumScreen));
-            AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
+            //AddLevel("steamRollerScreen", typeof(SteamRollerScreen));
 
             levelNumber = 0;
             AddLevel("twoLaneScreen", typeof(TwoLaneScreen)); // must be first

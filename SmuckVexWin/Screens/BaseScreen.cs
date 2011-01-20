@@ -102,6 +102,7 @@ namespace Smuck.Screens
         public override void AddedToStage(EventArgs e)
         {
             base.AddedToStage(e);
+            needsTrialPitch = Guide.IsTrialMode;
         }
         protected override void OnAddToStageComplete()
         {
@@ -687,9 +688,18 @@ namespace Smuck.Screens
         {
             get { return gameOverlay.hasActivePanel; }
         }
+        private bool needsTrialPitch;
+        private bool showingTrialPitch = false;
+        private TimeSpan trialDuration = new TimeSpan(0, 7, 6);
+
         private bool firstUpdate = true;
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            if (needsTrialPitch && !showingTrialPitch && gameTime.TotalGameTime > trialDuration)
+            {
+                needsTrialPitch = false;
+                gameOverlay.TrialExpired();
+            }
             if (!firstUpdate && gameOverlay.hasActivePanel)
             {
                 base.ManageInput(gameTime);
