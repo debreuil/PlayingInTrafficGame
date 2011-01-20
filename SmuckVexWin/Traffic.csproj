@@ -158,7 +158,7 @@
     <Compile Include="Enums\LaneKind.cs" />
     <Compile Include="FastRandom.cs" />
     <Compile Include="Panels\BeginPanel.cs" />
-    <Compile Include="Panels\EndRoundPanel.cs" />
+    <Compile Include="Panels\PostRoundPanel.cs" />
     <Compile Include="Panels\ExitPanel.cs" />
     <Compile Include="Panels\InstructionsPanel.cs" />
     <Compile Include="Panels\LobbyPanel.cs" />
@@ -166,7 +166,7 @@
     <Compile Include="Panels\NetworkGamePanel.cs" />
     <Compile Include="Panels\OptionsPanel.cs" />
     <Compile Include="Panels\PausedPanel.cs" />
-    <Compile Include="Panels\PrescreenPanel.cs" />
+    <Compile Include="Panels\PreRoundPanel.cs" />
     <Compile Include="Panels\TrafficSplashPanel.cs" />
     <Compile Include="Panels\TrialExpiredPanel.cs" />
     <Compile Include="Particles\DirectionalParticle.cs" />

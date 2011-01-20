@@ -14,7 +14,7 @@ using Smuck.Enums;
 
 namespace Smuck.Panels
 {
-    public class PrescreenPanel : Panel
+    public class PreRoundPanel : Panel
     {
         public List<ScoreBox> scoreBox;
 
@@ -22,7 +22,7 @@ namespace Smuck.Panels
         public int delayTime;
         public bool canAdvance;
         
-        public PrescreenPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
+        public PreRoundPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
         public override void Initialize()
         {

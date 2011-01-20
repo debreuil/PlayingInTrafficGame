@@ -13,14 +13,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Smuck.Panels
 {
-    public class EndRoundPanel : Panel
+    public class PostRoundPanel : Panel
     {
         public List<ScoreBox> scoreBox;
 
         public int delayTime;
         public bool canAdvance;
 
-        public EndRoundPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
+        public PostRoundPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
 		public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
 		{			
