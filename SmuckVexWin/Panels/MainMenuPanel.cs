@@ -20,8 +20,8 @@ namespace Smuck.Panels
         public ButtonTabGroup menuButtons;
         private MenuState[] buttonTargets = new MenuState[]
         {
-            MenuState.QuickGame,
-            //MenuState.NetworkGame, 
+            MenuState.Instructions,
+            //MenuState.QuickGame,
             MenuState.HighScores, 
             MenuState.UnlockTrial,
             MenuState.Options,
@@ -35,7 +35,7 @@ namespace Smuck.Panels
         void menuButtons_OnClick(Button sender, int playerIndex, TimeSpan time)
         {
             MenuState ms = buttonTargets[sender.Index];
-            ((StartScreen)parent).SetPanel(ms);
+            ((StartScreen)parent).SetPanel(ms, playerIndex);
         }
         void menuButtons_OnFocusChanged(Button sender)
         {

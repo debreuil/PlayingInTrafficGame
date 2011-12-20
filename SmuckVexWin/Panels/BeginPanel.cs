@@ -115,7 +115,7 @@ namespace Smuck.Panels
                         }
                         else
                         {
-                            ((StartScreen)parent).SetPanel(MenuState.MainMenu);
+                            ((StartScreen)parent).SetPanel(MenuState.MainMenu, playerIndex);
                         }
                     }
 				}

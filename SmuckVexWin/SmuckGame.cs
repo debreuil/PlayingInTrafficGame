@@ -27,6 +27,7 @@ namespace Smuck
 
 		public SmuckGame():base()
 		{
+            // Guide.SimulateTrialMode = true;
 		}
 
         private static GameOverlay gameOverlay;

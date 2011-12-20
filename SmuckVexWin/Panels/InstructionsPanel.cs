@@ -8,18 +8,27 @@ using V2DRuntime.Components;
 using Smuck.Enums;
 using Microsoft.Xna.Framework.Graphics;
 using DDW.V2D;
+using DDW.Display;
 
 namespace Smuck.Panels
 {
     public class InstructionsPanel : Panel
     {
-        //public ButtonTabGroup menuButtons;
+        protected Sprite[] borderPanels;
+        protected Sprite[] bushes;
+        protected Sprite road;
+        protected Sprite instructions;
+
         public InstructionsPanel(Texture2D texture, V2DInstance inst) : base(texture, inst) { }
 
-		//void menuButtons_OnClick(Button sender, int playerIndex, TimeSpan time)
-		//{
-		//    ((StartScreen)parent).SetPanel(MenuState.MainMenu);
-		//}
-
+        public override bool OnPlayerInput(int playerIndex, DDW.Input.Move move, TimeSpan time)
+        {
+            if (move == DDW.Input.Move.ButtonA)
+            {
+                MenuState ms = MenuState.QuickGame;
+                ((StartScreen)parent).SetPanel(ms, playerIndex);
+            }
+            return true;
+        }
     }
 }

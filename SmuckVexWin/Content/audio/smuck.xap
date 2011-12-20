@@ -16,8 +16,8 @@ Global Settings
     Header File = smuck.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
-    Last Modified Low = 71565311;
-    Last Modified High = 30117255;
+    Last Modified Low = 493141292;
+    Last Modified High = 30167592;
 
     Category
     {
@@ -221,7 +221,7 @@ Global Settings
 
         RPC Curve
         {
-            Name = Sound::40d40b50-2ce9-42d7-862e-85a1b6e489f4;
+            Name = Sound::33208caf-45fd-4062-999a-6016ac6ec64a;
             Property = 0;
             Sound = 1;
             Line Color = 4292085092;
@@ -263,7 +263,7 @@ Global Settings
 
         RPC Curve
         {
-            Name = Sound::3b0251da-c2b7-47a7-af2c-bbfcdb847ccb;
+            Name = Sound::84d1a310-c608-4731-89e2-582c214cbf4b;
             Property = 1;
             Sound = 1;
             Line Color = 4279582407;
@@ -296,7 +296,7 @@ Global Settings
 
         RPC Curve
         {
-            Name = Sound::e52caa8c-72f7-4426-bd6f-0eb3f3f64ddd;
+            Name = Sound::9329a14f-b714-4501-841c-2ac889ca1bf7;
             Property = 0;
             Sound = 1;
             Line Color = 4284190288;
@@ -359,20 +359,20 @@ Wave Bank
     Xbox Bank Path Edited = 1;
     Windows Bank Path Edited = 1;
     Seek Tables = 1;
-    Compression Preset Name = <none>;
+    Compression Preset Name = normalCompres;
     Xbox Bank Last Modified Low = 0;
     Xbox Bank Last Modified High = 0;
-    PC Bank Last Modified Low = 232489672;
-    PC Bank Last Modified High = 30117255;
-    Bank Last Revised Low = 232489672;
-    Bank Last Revised High = 30117255;
+    PC Bank Last Modified Low = 495161408;
+    PC Bank Last Modified High = 30167592;
+    Bank Last Revised Low = 215235397;
+    Bank Last Revised High = 30167592;
 
     Wave
     {
         Name = car01;
         File = car01.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215045386;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -394,8 +394,8 @@ Wave Bank
     {
         Name = car02;
         File = car02.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -417,8 +417,8 @@ Wave Bank
     {
         Name = car03;
         File = car03.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -440,8 +440,8 @@ Wave Bank
     {
         Name = car04;
         File = car04.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -463,8 +463,8 @@ Wave Bank
     {
         Name = whack03;
         File = whack03.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -486,8 +486,8 @@ Wave Bank
     {
         Name = whack00;
         File = whack00.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -509,8 +509,8 @@ Wave Bank
     {
         Name = whack01;
         File = whack01.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215075388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -532,8 +532,8 @@ Wave Bank
     {
         Name = whack02;
         File = whack02.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -555,8 +555,8 @@ Wave Bank
     {
         Name = trafficRumble;
         File = trafficRumble.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -578,8 +578,8 @@ Wave Bank
     {
         Name = car00;
         File = car00.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -601,8 +601,8 @@ Wave Bank
     {
         Name = select;
         File = select.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -624,8 +624,8 @@ Wave Bank
     {
         Name = navigate;
         File = navigate.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -647,8 +647,8 @@ Wave Bank
     {
         Name = beginPlay;
         File = beginPlay.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215085388;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -670,8 +670,8 @@ Wave Bank
     {
         Name = splash;
         File = splash.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -693,8 +693,8 @@ Wave Bank
     {
         Name = closePanel;
         File = closePanel.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -716,8 +716,8 @@ Wave Bank
     {
         Name = openPanel;
         File = openPanel.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -739,8 +739,8 @@ Wave Bank
     {
         Name = limerick;
         File = limerick.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -762,8 +762,8 @@ Wave Bank
     {
         Name = blackvelvetband;
         File = blackvelvetband.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -785,8 +785,8 @@ Wave Bank
     {
         Name = rareOulMtDew;
         File = rareOulMtDew.wav;
-        Build Settings Last Modified Low = 3336415274;
-        Build Settings Last Modified High = 30074456;
+        Build Settings Last Modified Low = 215095389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -808,8 +808,8 @@ Wave Bank
     {
         Name = carRunning1;
         File = carRunning1.wav;
-        Build Settings Last Modified Low = 2571077340;
-        Build Settings Last Modified High = 30074460;
+        Build Settings Last Modified Low = 215105389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -831,8 +831,8 @@ Wave Bank
     {
         Name = stevie_dodge;
         File = stevie_dodge.wav;
-        Build Settings Last Modified Low = 3134526598;
-        Build Settings Last Modified High = 30075112;
+        Build Settings Last Modified Low = 215105389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -854,8 +854,8 @@ Wave Bank
     {
         Name = Car Engine Run Loop 02;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\Car Engine Run Loop 02.wav;
-        Build Settings Last Modified Low = 227297392;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215105389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -877,8 +877,8 @@ Wave Bank
     {
         Name = Low End Rumble 01;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\Low End Rumble 01.wav;
-        Build Settings Last Modified Low = 227453393;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215105389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -900,8 +900,8 @@ Wave Bank
     {
         Name = Low End Rumble Loop 02;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\Low End Rumble Loop 02.wav;
-        Build Settings Last Modified Low = 227639395;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215105389;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -923,8 +923,8 @@ Wave Bank
     {
         Name = Low End Rumble Loop 03;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\Low End Rumble Loop 03.wav;
-        Build Settings Last Modified Low = 227839406;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -946,8 +946,8 @@ Wave Bank
     {
         Name = Car Engine Run Loop 01;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\Car Engine Run Loop 01.wav;
-        Build Settings Last Modified Low = 227859407;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -969,8 +969,8 @@ Wave Bank
     {
         Name = hit16;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit16.wav;
-        Build Settings Last Modified Low = 227949412;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -992,8 +992,8 @@ Wave Bank
     {
         Name = hit18;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit18.wav;
-        Build Settings Last Modified Low = 227959413;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1015,8 +1015,8 @@ Wave Bank
     {
         Name = hit19;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit19.wav;
-        Build Settings Last Modified Low = 227979414;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1038,8 +1038,8 @@ Wave Bank
     {
         Name = hit20;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit20.wav;
-        Build Settings Last Modified Low = 227999415;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215115390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1061,8 +1061,8 @@ Wave Bank
     {
         Name = hit21;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit21.wav;
-        Build Settings Last Modified Low = 228009416;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1084,8 +1084,8 @@ Wave Bank
     {
         Name = hit0;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit0.wav;
-        Build Settings Last Modified Low = 228109422;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1107,8 +1107,8 @@ Wave Bank
     {
         Name = hit1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit1.wav;
-        Build Settings Last Modified Low = 228249430;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1130,8 +1130,8 @@ Wave Bank
     {
         Name = hit2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit2.wav;
-        Build Settings Last Modified Low = 228349435;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1153,8 +1153,8 @@ Wave Bank
     {
         Name = hit3;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit3.wav;
-        Build Settings Last Modified Low = 228499444;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1176,8 +1176,8 @@ Wave Bank
     {
         Name = hit4;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit4.wav;
-        Build Settings Last Modified Low = 228519445;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215125390;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1199,8 +1199,8 @@ Wave Bank
     {
         Name = hit5;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit5.wav;
-        Build Settings Last Modified Low = 228539446;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1222,8 +1222,8 @@ Wave Bank
     {
         Name = hit6;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit6.wav;
-        Build Settings Last Modified Low = 228619451;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1245,8 +1245,8 @@ Wave Bank
     {
         Name = hit7;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit7.wav;
-        Build Settings Last Modified Low = 228639452;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1268,8 +1268,8 @@ Wave Bank
     {
         Name = hit8;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit8.wav;
-        Build Settings Last Modified Low = 228649452;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1291,8 +1291,8 @@ Wave Bank
     {
         Name = hit9;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit9.wav;
-        Build Settings Last Modified Low = 228679454;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1314,8 +1314,8 @@ Wave Bank
     {
         Name = hit10;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit10.wav;
-        Build Settings Last Modified Low = 228689455;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215135391;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1337,8 +1337,8 @@ Wave Bank
     {
         Name = hit11;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit11.wav;
-        Build Settings Last Modified Low = 228709456;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1360,8 +1360,8 @@ Wave Bank
     {
         Name = hit12;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit12.wav;
-        Build Settings Last Modified Low = 228719456;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1383,8 +1383,8 @@ Wave Bank
     {
         Name = hit13;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit13.wav;
-        Build Settings Last Modified Low = 228729457;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1406,8 +1406,8 @@ Wave Bank
     {
         Name = hit14;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit14.wav;
-        Build Settings Last Modified Low = 228739458;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1429,8 +1429,8 @@ Wave Bank
     {
         Name = hit15;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\hit15.wav;
-        Build Settings Last Modified Low = 228759459;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1452,8 +1452,8 @@ Wave Bank
     {
         Name = step2soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step2soft.wav;
-        Build Settings Last Modified Low = 228829463;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215145392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1475,8 +1475,8 @@ Wave Bank
     {
         Name = step3Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step3Soft.wav;
-        Build Settings Last Modified Low = 228899467;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1498,8 +1498,8 @@ Wave Bank
     {
         Name = step4Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step4Soft.wav;
-        Build Settings Last Modified Low = 228979471;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1521,8 +1521,8 @@ Wave Bank
     {
         Name = step5Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step5Soft.wav;
-        Build Settings Last Modified Low = 229089478;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1544,8 +1544,8 @@ Wave Bank
     {
         Name = step6Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step6Soft.wav;
-        Build Settings Last Modified Low = 229169482;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1567,8 +1567,8 @@ Wave Bank
     {
         Name = step7Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step7Soft.wav;
-        Build Settings Last Modified Low = 229279488;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1590,8 +1590,8 @@ Wave Bank
     {
         Name = step1Soft;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\step1Soft.wav;
-        Build Settings Last Modified Low = 229409496;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215155392;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1613,8 +1613,8 @@ Wave Bank
     {
         Name = truck1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\truck1.wav;
-        Build Settings Last Modified Low = 229489501;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215165393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1636,8 +1636,8 @@ Wave Bank
     {
         Name = truck2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\truck2.wav;
-        Build Settings Last Modified Low = 229519502;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215165393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1659,8 +1659,8 @@ Wave Bank
     {
         Name = scream12;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream12.wav;
-        Build Settings Last Modified Low = 229649510;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215165393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1682,8 +1682,8 @@ Wave Bank
     {
         Name = scream13;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream13.wav;
-        Build Settings Last Modified Low = 229859522;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215165393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1705,8 +1705,8 @@ Wave Bank
     {
         Name = scream14;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream14.wav;
-        Build Settings Last Modified Low = 229879523;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215165393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1728,8 +1728,8 @@ Wave Bank
     {
         Name = scream15;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream15.wav;
-        Build Settings Last Modified Low = 229899524;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1751,8 +1751,8 @@ Wave Bank
     {
         Name = scream16;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream16.wav;
-        Build Settings Last Modified Low = 229919525;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1774,8 +1774,8 @@ Wave Bank
     {
         Name = screamTaz;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\screamTaz.wav;
-        Build Settings Last Modified Low = 230099535;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1797,8 +1797,8 @@ Wave Bank
     {
         Name = scream1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream1.wav;
-        Build Settings Last Modified Low = 230229543;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1820,8 +1820,8 @@ Wave Bank
     {
         Name = scream2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream2.wav;
-        Build Settings Last Modified Low = 230259545;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1843,8 +1843,8 @@ Wave Bank
     {
         Name = scream3;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream3.wav;
-        Build Settings Last Modified Low = 230369551;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215175393;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1866,8 +1866,8 @@ Wave Bank
     {
         Name = scream4;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream4.wav;
-        Build Settings Last Modified Low = 230399553;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1889,8 +1889,8 @@ Wave Bank
     {
         Name = scream5;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream5.wav;
-        Build Settings Last Modified Low = 230599564;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1912,8 +1912,8 @@ Wave Bank
     {
         Name = scream6;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream6.wav;
-        Build Settings Last Modified Low = 230619565;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1935,8 +1935,8 @@ Wave Bank
     {
         Name = scream7;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream7.wav;
-        Build Settings Last Modified Low = 230639566;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1958,8 +1958,8 @@ Wave Bank
     {
         Name = scream8;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream8.wav;
-        Build Settings Last Modified Low = 230649567;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -1981,8 +1981,8 @@ Wave Bank
     {
         Name = scream9;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream9.wav;
-        Build Settings Last Modified Low = 230789575;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215185394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2004,8 +2004,8 @@ Wave Bank
     {
         Name = scream10;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream10.wav;
-        Build Settings Last Modified Low = 230849578;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2027,8 +2027,8 @@ Wave Bank
     {
         Name = scream11;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\scream11.wav;
-        Build Settings Last Modified Low = 230879580;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2050,8 +2050,8 @@ Wave Bank
     {
         Name = explode1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\explode1.wav;
-        Build Settings Last Modified Low = 230989586;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2073,8 +2073,8 @@ Wave Bank
     {
         Name = siren2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren2.wav;
-        Build Settings Last Modified Low = 231069591;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2096,8 +2096,8 @@ Wave Bank
     {
         Name = siren3;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren3.wav;
-        Build Settings Last Modified Low = 231119594;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2119,8 +2119,8 @@ Wave Bank
     {
         Name = siren4;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren4.wav;
-        Build Settings Last Modified Low = 231149595;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215195394;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2142,8 +2142,8 @@ Wave Bank
     {
         Name = siren5;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren5.wav;
-        Build Settings Last Modified Low = 231179597;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2165,8 +2165,8 @@ Wave Bank
     {
         Name = siren6;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren6.wav;
-        Build Settings Last Modified Low = 231229600;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2188,8 +2188,8 @@ Wave Bank
     {
         Name = siren1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\siren1.wav;
-        Build Settings Last Modified Low = 231289603;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2211,8 +2211,8 @@ Wave Bank
     {
         Name = batman2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\batman2.wav;
-        Build Settings Last Modified Low = 231299604;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2234,8 +2234,8 @@ Wave Bank
     {
         Name = genLee;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\genLee.wav;
-        Build Settings Last Modified Low = 231429611;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2257,8 +2257,8 @@ Wave Bank
     {
         Name = splash3;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash3.wav;
-        Build Settings Last Modified Low = 231569619;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215205395;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2280,8 +2280,8 @@ Wave Bank
     {
         Name = splash4;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash4.wav;
-        Build Settings Last Modified Low = 231589621;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215215396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2303,8 +2303,8 @@ Wave Bank
     {
         Name = splash5;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash5.wav;
-        Build Settings Last Modified Low = 231599621;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215215396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2326,8 +2326,8 @@ Wave Bank
     {
         Name = splash6;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash6.wav;
-        Build Settings Last Modified Low = 231739629;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215215396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2349,8 +2349,8 @@ Wave Bank
     {
         Name = splash7;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash7.wav;
-        Build Settings Last Modified Low = 231749630;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215215396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2372,8 +2372,8 @@ Wave Bank
     {
         Name = splash1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash1.wav;
-        Build Settings Last Modified Low = 231889638;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215215396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2395,8 +2395,8 @@ Wave Bank
     {
         Name = splash2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\splash2.wav;
-        Build Settings Last Modified Low = 231899638;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2418,8 +2418,8 @@ Wave Bank
     {
         Name = psst;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\psst.wav;
-        Build Settings Last Modified Low = 231989644;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2441,8 +2441,8 @@ Wave Bank
     {
         Name = psstLoop;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\psstLoop.wav;
-        Build Settings Last Modified Low = 232009645;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2464,8 +2464,8 @@ Wave Bank
     {
         Name = shortSlide1;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\shortSlide1.wav;
-        Build Settings Last Modified Low = 232019645;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2487,8 +2487,8 @@ Wave Bank
     {
         Name = shortSlide2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\shortSlide2.wav;
-        Build Settings Last Modified Low = 232029646;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2510,8 +2510,8 @@ Wave Bank
     {
         Name = twoToots;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\twoToots.wav;
-        Build Settings Last Modified Low = 232159653;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215225396;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2533,8 +2533,8 @@ Wave Bank
     {
         Name = respawn2;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\respawn2.wav;
-        Build Settings Last Modified Low = 232249658;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215235397;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2556,8 +2556,8 @@ Wave Bank
     {
         Name = respawn3;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\respawn3.wav;
-        Build Settings Last Modified Low = 232259659;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215235397;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2579,8 +2579,8 @@ Wave Bank
     {
         Name = bigSplash;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\bigSplash.wav;
-        Build Settings Last Modified Low = 232339664;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215235397;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2602,8 +2602,8 @@ Wave Bank
     {
         Name = drowning;
         File = C:\csdev\PlayingInTraffic\SmuckVexWin\Content\audio\drowning.wav;
-        Build Settings Last Modified Low = 232489672;
-        Build Settings Last Modified High = 30117255;
+        Build Settings Last Modified Low = 215235397;
+        Build Settings Last Modified High = 30167592;
 
         Cache
         {
@@ -2629,8 +2629,8 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 1;
     Windows Bank Path Edited = 1;
-    Bank Last Modified Low = 238265951;
-    Bank Last Modified High = 30117255;
+    Bank Last Modified Low = 704673391;
+    Bank Last Modified High = 30167592;
     Header Last Modified High = 0;
     Header Last Modified Low = 0;
 

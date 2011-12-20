@@ -25,7 +25,7 @@ namespace Smuck.Panels
 			bool result = base.OnPlayerInput(playerIndex, move, time);
 			if (result && move == Move.ButtonA)
 			{
-				((StartScreen)parent).SetPanel(MenuState.QuickGame);
+				((StartScreen)parent).SetPanel(MenuState.QuickGame, playerIndex);
 			}
 			return result;
 		}

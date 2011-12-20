@@ -30,14 +30,14 @@ namespace Smuck.Panels
 					NetworkManager.Instance.CreateSession(NetworkSessionType.Local);
 					if (NetworkManager.Session != null)
 					{
-						((StartScreen)parent).SetPanel(MenuState.Lobby);
+						((StartScreen)parent).SetPanel(MenuState.Lobby, playerIndex);
 					}
 					break;
 				case NetworkButton.Join:
 					NetworkManager.Instance.JoinSession();
 					if (NetworkManager.Session != null)
 					{
-						((StartScreen)parent).SetPanel(MenuState.Lobby);
+						((StartScreen)parent).SetPanel(MenuState.Lobby, playerIndex);
 					}
 					break;
 			}

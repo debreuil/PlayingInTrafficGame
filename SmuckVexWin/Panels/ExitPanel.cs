@@ -32,7 +32,7 @@ namespace Smuck.Panels
 					SmuckGame.instance.ExitToMainMenu();
 					break;
                 case ExitButton.UnlockTrial:
-                    SmuckGame.instance.UnlockTrial();
+                    SmuckGame.instance.UnlockTrial(playerIndex);
 					break;
 			}
         }

@@ -49,7 +49,7 @@ namespace Smuck.Panels
             switch (sender.Index)
             {
                 case 0:
-                    SmuckGame.instance.UnlockTrial();
+                    SmuckGame.instance.UnlockTrial(playerIndex);
                     break;
 
                 case 1:

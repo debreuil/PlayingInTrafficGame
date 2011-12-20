@@ -47,13 +47,8 @@ namespace Smuck.Panels
 				case ExitButton.Back:
 					Unpause(this, null);
 					break;
-				case ExitButton.UnlockTrial:
-					//V2DGame.instance.in
-					//foreach (NetworkGamer ng in V2DGame.instance.gamers)
-					//{
-					//    if(ng.
-					//}
-                    SmuckGame.instance.UnlockTrial();
+                case ExitButton.UnlockTrial:
+                    SmuckGame.instance.UnlockTrial(playerIndex);
 					break;
 			}
 		}

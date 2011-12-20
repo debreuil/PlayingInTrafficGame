@@ -62,21 +62,21 @@ namespace Smuck.Screens
 		{
 			base.OnAddToStageComplete();
 
-            SetPanel(MenuState.Empty);
+            SetPanel(MenuState.Empty, -1);
 
 			if (firstTimeDisplayed)
 			{
-				SetPanel(MenuState.Splash);
+                SetPanel(MenuState.Splash, -1);
 				firstTimeDisplayed = false;
 			}
             else if (allLevelsComplete)
             {
-                SetPanel(MenuState.HighScores);
+                SetPanel(MenuState.HighScores, -1);
                 allLevelsComplete = false;
             }
             else
             {
-                SetPanel(MenuState.MainMenu);
+                SetPanel(MenuState.MainMenu, -1);
             }
 		}
 		public override void AddedToStage(EventArgs e)
@@ -88,7 +88,7 @@ namespace Smuck.Screens
 		public override void RemovedFromStage(EventArgs e)
 		{
 			base.RemovedFromStage(e);
-			SetPanel(MenuState.Empty);
+            SetPanel(MenuState.Empty, -1);
             panels = null;
 			NetworkManager.Instance.OnGameStarted -= new NetworkManager.GameStartedDelegate(OnStartGame);
 		}
@@ -103,7 +103,7 @@ namespace Smuck.Screens
 				{
 					if (curState != MenuState.Begin)
 					{
-                        SetPanel(MenuState.MainMenu);
+                        SetPanel(MenuState.MainMenu, playerIndex);
                         stage.audio.PlaySound(Sfx.closePanel);
 					}
 					else
@@ -116,7 +116,7 @@ namespace Smuck.Screens
 				}
 				else if (curState == MenuState.MainMenu && move == Move.ButtonB)
 				{
-					SetPanel(MenuState.Begin);
+                    SetPanel(MenuState.Begin, playerIndex);
                     stage.audio.PlaySound(Sfx.closePanel);
 				}
 				else
@@ -130,8 +130,10 @@ namespace Smuck.Screens
 			return true;
         }
 
-        public void SetPanel(MenuState state)
+        public void SetPanel(MenuState state, int playerIndex)
         {
+            //Console.WriteLine(playerIndex.ToString());
+            //return;
             trafficLogo.Visible = (state != MenuState.Splash);
 
             switch (state)
@@ -149,6 +151,7 @@ namespace Smuck.Screens
 					panelStack.Push(mainMenuPanel);
                     break;
                 case MenuState.HighScores:
+                    highScorePanel.SetActivePlayer((PlayerIndex)(playerIndex));
 					panelStack.Push(highScorePanel);
                     break;
                 case MenuState.Instructions:
@@ -156,7 +159,7 @@ namespace Smuck.Screens
                     break;
 
                 case MenuState.UnlockTrial:
-                    SmuckGame.instance.UnlockTrial();
+                    SmuckGame.instance.UnlockTrial(playerIndex);
                     break;
 
                 case MenuState.Options:
@@ -241,7 +244,7 @@ namespace Smuck.Screens
             {
                 MenuState tempState = nextState;
                 nextState = MenuState.Empty;
-                SetPanel(tempState);
+                SetPanel(tempState, -1);
             }
         }
     }
